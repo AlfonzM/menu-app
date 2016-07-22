@@ -1,0 +1,135 @@
+@import url(https://fonts.googleapis.com/css?family=Lato:400,300,700,100);
+
+// MIXINS
+@mixin loading-icon($loadingSize, $color){
+  &:before{
+    @extend .border-box;
+    content: "";
+    width: $loadingSize;
+    height: $loadingSize;
+    border: solid 5px $color;
+    border-left-color: transparent;
+    border-radius: 999px;
+    position: relative;
+    position: absolute;
+    top: calc(50% - (#{$loadingSize} / 2));
+    left: calc(50% - (#{$loadingSize} / 2));
+    transform-origin: center;
+
+    -webkit-animation: ROTATE .5s infinite linear;
+       -moz-animation: ROTATE .5s infinite linear;
+         -o-animation: ROTATE .5s infinite linear;
+            animation: ROTATE .5s infinite linear;
+  }
+}
+
+@mixin gradient-down($color){
+  background: $color;
+  background: -moz-linear-gradient(top, $color 0%, transparentize($color, 1) 85%);
+  background: -webkit-gradient(left top, left bottom, color-stop(0%, $color), color-stop(85%, transparentize($color, 1)));
+  background: -webkit-linear-gradient(top, $color 0%, transparentize($color, 1) 85%);
+  background: -o-linear-gradient(top, $color 0%, transparentize($color, 1) 85%);
+  background: -ms-linear-gradient(top, $color 0%, transparentize($color, 1) 85%);
+  background: linear-gradient(to bottom, $color 0%, transparentize($color, 1) 85%);
+}
+
+@mixin gradient-up($color){
+  background: $color;
+  background: -moz-linear-gradient(bottom, $color 0%, transparentize($color, 1) 85%);
+  background: -webkit-gradient(left bottom, left top, color-stop(0%, $color), color-stop(85%, transparentize($color, 1)));
+  background: -webkit-linear-gradient(bottom, $color 0%, transparentize($color, 1) 85%);
+  background: -o-linear-gradient(bottom, $color 0%, transparentize($color, 1) 85%);
+  background: -ms-linear-gradient(bottom, $color 0%, transparentize($color, 1) 85%);
+  background: linear-gradient(to top, $color 0%, transparentize($color, 1) 85%);
+}
+
+@mixin shadow-box($blur, $spread, $color){
+  -webkit-box-shadow: 0px 0px $blur $spread $color;
+     -moz-box-shadow: 0px 0px $blur $spread $color;
+          box-shadow: 0px 0px $blur $spread $color;
+}
+
+$default-font: "Lato";
+$common-size: 40px;
+$body-min-width: 1000px;
+
+// Theme Color
+$theme-color: #9B9B9B; // #4E5F70
+$light-theme-color: lighten($theme-color, 10%);
+$dark-theme-color: darken($theme-color, 10%);
+
+// Border Color
+$border-color: #d9d9d9;
+$light-border-color: lighten($border-color, 10%);
+$dark-border-color: darken($border-color, 10%);
+
+// Custom Colors
+$custom-black: darken(gray, 20%);
+$danger-color: tomato;
+
+$global-border-radius: 3px;
+
+$popup-width: 450px;
+$popup-height: 250px;
+
+$input-width: 500px;
+$input-height: 35px;
+
+// General CSS
+ul{
+  padding: 0;
+  margin: 0;
+  font-size: 0;
+  list-style: none;
+}
+
+.center-block-elem{
+  display: -webkit-flex;
+  display:         flex;
+
+  -webkit-align-items: center;
+          align-items: center;
+
+  -webkit-justify-content: center;
+          justify-content: center;
+}
+
+.center-inline-elem{
+  display: -webkit-inline-flex;
+  display:         inline-flex;
+
+  -webkit-align-items: center;
+          align-items: center;
+
+  -webkit-justify-content: center;
+          justify-content: center;
+}
+
+.border-box{
+  -webkit-box-sizing: border-box;
+     -moz-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+.google-icons{
+  font-family: 'Material Icons';
+  -webkit-font-feature-settings: 'liga';
+}
+
+// Animations
+@-webkit-keyframes ROTATE{
+  from   { transform: rotate(0deg); }
+  to     { transform: rotate(360deg); }
+}
+@-moz-keyframes ROTATE{
+  from   { transform: rotate(0deg); }
+  to     { transform: rotate(360deg); }
+}
+@-o-keyframes ROTATE{
+  from   { transform: rotate(0deg); }
+  to     { transform: rotate(360deg); }
+}
+@keyframes ROTATE{
+  from   { transform: rotate(0deg); }
+  to     { transform: rotate(360deg); }
+}
