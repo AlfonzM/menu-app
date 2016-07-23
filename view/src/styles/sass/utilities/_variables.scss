@@ -50,7 +50,7 @@
 }
 
 $default-font: "Lato";
-$common-size: 40px;
+$common-size: 42px;
 $body-min-width: 1000px;
 
 // Theme Color
@@ -73,7 +73,7 @@ $popup-width: 450px;
 $popup-height: 250px;
 
 $input-width: 500px;
-$input-height: 35px;
+$input-height: 25px;
 
 // General CSS
 ul{
@@ -84,6 +84,9 @@ ul{
 }
 
 .center-block-elem{
+  -webkit-justify-content: flex-start;
+  -webkit-align-items: flex-start;
+
   display: -webkit-flex;
   display:         flex;
 
@@ -95,6 +98,9 @@ ul{
 }
 
 .center-inline-elem{
+  -webkit-justify-content: flex-start;
+  -webkit-align-items: flex-start;
+
   display: -webkit-inline-flex;
   display:         inline-flex;
 

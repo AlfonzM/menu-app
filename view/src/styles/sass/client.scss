@@ -1,0 +1,123 @@
+@import "utilities/variables";
+
+html, body{
+  width: 100%;
+  height: 100%;
+  position: relative;
+  font-family: $default-font;
+}
+
+body{
+  min-width: 900px;
+  margin: 0;
+  margin-top: $common-size;
+  padding: 0;
+}
+
+.search-wrap{
+  & > .rslt-view:not(:empty){
+    @extend .border-box;
+    @include shadow-box(1px, 1px, transparentize($border-color, .3));
+    width: 100%;
+    max-height: ($common-size + 10) * 9;
+    background-color: white;
+    display: none;
+    transform: translateY(4px);
+    position: absolute;
+    left: 0;
+    top: 100%;
+    overflow-y: scroll;
+  }
+
+  &.collapse{
+    & > .btn-icn{
+      color: $dark-theme-color;
+    }
+    & > .rslt-view{
+      display: block;
+    }
+  }
+}
+
+.search-field{
+  @extend .border-box;
+  padding-left: 5px;
+  height: $input-height;
+  font-size: 13px;
+  font-family: $default-font;
+  font-weight: 400;
+  border: none;
+  outline: none;
+  display: inline-flex;
+
+  & + .btn-icn{
+    @extend .center-inline-elem;
+    height: $input-height;
+    min-width: $input-height;
+    color: $theme-color;
+    background-color: white;
+    font-size: 18px;
+    display: inline-flex;
+    cursor: text;
+  }
+}
+
+.input-wrap{
+  display: inline-flex;
+  position: relative;
+}
+
+.rslt-elem{
+  height: $common-size;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  padding-left: 5px;
+  padding-right: 5px;
+  cursor: pointer;
+  margin: 0;
+  font-size: 0;
+  position: relative;
+  display: flex;
+
+  &:hover{
+    background-color: $light-border-color;
+  }
+
+  & > .rslt-img{
+    height: $common-size;
+    width: $common-size;
+    flex-shrink: 0;
+    background-color: $border-color;
+  }
+
+  & > .info-container{
+    width: 100%;
+    padding-left: 5px;
+    padding-right: 5px;
+    font-size: 15px;
+    display: block;
+    flex-direction: column;
+    position: relative;
+
+    & > .item-name{
+      width: 300px;
+      line-height: 20px;
+      font-weight: 600;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      display: block;
+    }
+
+    & > .item-info{
+      width: 300px;
+      color: gray;
+      font-size: 12px;
+      line-height: 20px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      display: block;
+    }
+  }
+}

@@ -1,0 +1,43 @@
+@import "utilities/variables";
+
+.header-bar{
+  @extend .border-box;
+  width: 100%;
+  padding-left: 40px;
+  padding-right: 40px;
+  background-color: $theme-color;
+  display: inline-flex;
+  position: fixed;
+  top: 0;
+  left: 0;
+}
+
+.header-elem-wrapper{
+  @extend .center-inline-elem;
+  width: 100%;
+  height: $common-size;
+
+  & > i{
+    padding-right: 5px;
+    color: white;
+    font-size: 22px;
+  }
+
+  & > .title{
+    width: 100%;
+    color: white;
+    font-size: 18px;
+    font-weight: 500;
+  }
+}
+
+.header-search-wrap{
+  & .input-wrap > .search-field{
+    width: 350px;
+  }
+}
+
+.sale-tag{
+  color: tomato;
+  font-weight: 800;
+}
