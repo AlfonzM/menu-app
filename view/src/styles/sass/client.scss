@@ -22,7 +22,7 @@ body{
     max-height: ($common-size + 10) * 9;
     background-color: white;
     display: none;
-    transform: translateY(4px);
+    transform: translateY(1px);
     position: absolute;
     left: 0;
     top: 100%;
@@ -81,13 +81,18 @@ body{
 
   &:hover{
     background-color: $light-border-color;
+
+    & .feat-icon{
+      color: $theme-color;
+    }
   }
 
   & > .rslt-img{
     height: $common-size;
     width: $common-size;
     flex-shrink: 0;
-    background-color: $border-color;
+    background-image: url("./images/no-image.png");
+    background-size: contain;
   }
 
   & > .info-container{
@@ -120,4 +125,8 @@ body{
       display: block;
     }
   }
+}
+
+.feat-icon{
+  color: gray;
 }

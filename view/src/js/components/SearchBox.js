@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router";
 
 export default class Header extends React.Component {
   handleChange() {
@@ -14,14 +15,23 @@ export default class Header extends React.Component {
             <img class="rslt-img"></img>
             <div class="info-container">
               <span class="item-name">ソファー</span>
-              <span class="item-info">家具 / 家の装飾 &nbsp;<span class="sale-tag">SALE!</span></span>
+              <span class="item-info">家具 / 家の装飾 &nbsp;<span class="sale-tag">-70%</span></span>
             </div>
           </div>
+
           <div class="rslt-elem">
             <img class="rslt-img"></img>
             <div class="info-container">
-              <span class="item-name">Lamp</span>
-              <span class="item-info">Appliance / Light &nbsp;<span class="sale-tag">SALE!</span></span>
+              <span class="item-name">Round Table &nbsp;<i class="mdi mdi-star-circle feat-icon"></i></span>
+              <span class="item-info">Furniture / Table &nbsp;<span class="sale-tag"></span></span>
+            </div>
+          </div>
+
+          <div class="rslt-elem">
+            <img class="rslt-img"></img>
+            <div class="info-container">
+              <span class="item-name">中国テーブル</span>
+              <span class="item-info">家具 / 家の装飾 &nbsp;<span class="sale-tag">-70%</span></span>
             </div>
           </div>
         </div>

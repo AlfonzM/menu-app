@@ -58,7 +58,7 @@ ul {
   width: 100%;
   padding-left: 40px;
   padding-right: 40px;
-  background-color: #9B9B9B;
+  background-color: LightSeaGreen;
   display: inline-flex;
   position: fixed;
   top: 0;
@@ -82,6 +82,7 @@ ul {
 
 .sale-tag {
   color: tomato;
+  font-size: 12px;
   font-weight: 800; }
 
 /*# sourceMappingURL=header.css.map */
