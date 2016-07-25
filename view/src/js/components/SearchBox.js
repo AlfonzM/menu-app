@@ -2,12 +2,18 @@ import React from "react";
 import { Link } from "react-router";
 
 export default class Header extends React.Component {
+  handleFocus() {
+    console.log("Add Collapse");
+  }
+  handleFocusOut() {
+    console.log("Remove Collapse");
+  }
   handleChange() {
     console.log("changing");
   }
   render() {
     return (
-      <div class="input-wrap search-wrap collapse">
+      <div class="input-wrap search-wrap collapse" onBlur={this.handleFocusOut.bind()} onFocus={this.handleFocus.bind()}>
         <input id="search" class="search-field" placeholder="Search Product..." type="text" onChange={this.handleChange.bind()}></input>
         <label for="search" class="btn-icn mdi mdi-magnify"></label>
         <div class="rslt-view">
