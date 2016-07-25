@@ -22,9 +22,18 @@ export default class Header extends React.Component {
         </div>
         <div class="nav-wrapper">
           <nav>
-            <Link to="home" class="nav-elem active">Home</Link>
-            <Link to="products" class="nav-elem">Products</Link>
-            <Link to="categories" class="nav-elem">Categories</Link>
+            <Link to="setup" class="nav-elem active">
+              <i class="mdi mdi-tune nav-icon"></i>
+              Setup
+            </Link>
+            <Link to="products" class="nav-elem">
+              <i class="mdi mdi-shopping nav-icon"></i>
+              Products
+            </Link>
+            <Link to="categories" class="nav-elem">
+              <i class="mdi mdi-file-tree nav-icon"></i>
+              Categories
+            </Link>
           </nav>
         </div>
       </div>

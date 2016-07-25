@@ -186,6 +186,10 @@ nav{
     position: relative;
     cursor: pointer;
 
+    & > .nav-icon{
+      padding-right: 5px;
+    }
+
     &.active{
       color: $theme-color;
       font-weight: 600;
