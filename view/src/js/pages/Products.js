@@ -1,12 +1,11 @@
 import React from "react";
 import { Link } from "react-router";
 
-export default class Archive extends React.Component {
+export default class Products extends React.Component {
   render() {
     return (
       <div>
-        <h1>Archive</h1>
-        <Link to="featured">Page 3</Link>
+        <h1>Products</h1>
       </div>
     );
   }

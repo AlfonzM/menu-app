@@ -1,12 +1,11 @@
 import React from "react";
 import { Link } from "react-router";
 
-export default class Settings extends React.Component {
+export default class Home extends React.Component {
   render() {
     return (
       <div>
-        <h1>Settings</h1>
-        <Link to="archives">Page 2</Link>
+        <h1>Home</h1>
       </div>
     );
   }

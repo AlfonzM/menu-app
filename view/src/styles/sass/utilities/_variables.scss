@@ -54,7 +54,7 @@ $common-size: 42px;
 $body-min-width: 1000px;
 
 // Theme Color
-$theme-color: LightSeaGreen; // #4E5F70
+$theme-color: #9F9F9F;
 $light-theme-color: lighten($theme-color, 10%);
 $dark-theme-color: darken($theme-color, 10%);
 
@@ -65,7 +65,7 @@ $dark-border-color: darken($border-color, 10%);
 
 // Custom Colors
 $custom-black: darken(gray, 20%);
-$danger-color: tomato;
+$alert-color: Tomato;
 
 $global-border-radius: 3px;
 
@@ -74,6 +74,8 @@ $popup-height: 250px;
 
 $input-width: 500px;
 $input-height: 25px;
+$header-width: 1000px;
+$nav-height: 60px;
 
 // General CSS
 ul{

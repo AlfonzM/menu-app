@@ -1,21 +1,32 @@
 @import "utilities/variables";
 
 .header-bar{
+  @extend .center-block-elem;
   @extend .border-box;
   width: 100%;
-  padding-left: 40px;
-  padding-right: 40px;
   background-color: $theme-color;
-  display: inline-flex;
-  justify-content: space-between;
+  flex-direction: column;
   position: fixed;
   top: 0;
   left: 0;
 }
 
+.header-container{
+  width: $header-width;
+  margin: 0 auto;
+  padding-left: 10px;
+  padding-right: 10px;
+  position: relative;
+  display: inline-flex;
+  justify-content: space-between;
+  z-index: 1;
+}
+
 .header-elem-wrapper{
   @extend .center-inline-elem;
   height: $common-size;
+  position: relative;
+  vertical-align: top;
 
   & > i{
     padding-right: 5px;
@@ -35,13 +46,13 @@
     margin-left: 10px;
     margin-right: 10px;
     & > .search-field{
-      width: 350px;
+      width: 400px;
     }
   }
 }
 
 .sale-tag{
-  color: tomato;
+  color: Tomato;
   font-size: 12px;
   font-weight: 800;
 }

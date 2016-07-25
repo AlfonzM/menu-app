@@ -8,10 +8,10 @@ html, body{
 }
 
 body{
-  min-width: 900px;
   margin: 0;
-  margin-top: $common-size;
+  margin-top: $common-size + $nav-height;
   padding: 0;
+  background-color: #FAFAFA;
 }
 
 input{
@@ -45,6 +45,10 @@ input{
     left: 0;
     top: 100%;
     overflow-y: scroll;
+
+    &::-webkit-scrollbar {
+      display: none;
+    }
   }
 
   &.collapse{
@@ -101,7 +105,7 @@ input{
     background-color: $light-border-color;
 
     & .feat-icon{
-      color: $theme-color;
+      color: Tomato;
     }
   }
 
@@ -147,4 +151,47 @@ input{
 
 .feat-icon{
   color: gray;
+}
+
+.nav-wrapper{
+  width: 100%;
+  height: $nav-height;
+  padding-left: 10px;
+  padding-right: 10px;
+  background-color: white;
+  position: relative;
+}
+
+nav{
+  @extend .border-box;
+  width: $header-width;
+  height: 100%;
+  margin: 0 auto;
+  padding-left: 10px;
+  padding-right: 10px;
+  display: flex;
+  position: relative;
+
+  & > .nav-elem{
+    @extend .border-box;
+    min-width: 80px;
+    height: 100%;
+    padding-left: 10px;
+    padding-right: 10px;
+    color: $dark-border-color;
+    font-size: 15px;
+    font-weight: 400;
+    line-height: $nav-height;
+    vertical-align: middle;
+    text-align: center;
+    text-decoration: none;
+    position: relative;
+    cursor: pointer;
+
+    &.active{
+      color: $theme-color;
+      font-weight: 600;
+      border-bottom: solid 3px $border-color;
+    }
+  }
 }
