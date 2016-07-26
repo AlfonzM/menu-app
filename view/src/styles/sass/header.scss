@@ -12,6 +12,7 @@
 }
 
 .header-container{
+  @extend .border-box;
   width: $header-width;
   margin: 0 auto;
   padding-left: 10px;
@@ -55,4 +56,20 @@
   color: Tomato;
   font-size: 12px;
   font-weight: 800;
+}
+
+@media screen and (max-width: 1000px) {
+  body {
+    & .header-container{
+      width: 100%;
+    }
+  }
+}
+
+@media screen and (max-width: 580px) {
+  body {
+    & .title{
+      display: none;
+    }
+  }
 }

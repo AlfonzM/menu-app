@@ -156,8 +156,6 @@ input{
 .nav-wrapper{
   width: 100%;
   height: $nav-height;
-  padding-left: 10px;
-  padding-right: 10px;
   background-color: white;
   position: relative;
 }
@@ -187,6 +185,10 @@ nav{
     text-decoration: none;
     position: relative;
     cursor: pointer;
+
+    & > .nav-icon{
+      padding-right: 5px;
+    }
 
     &.active{
       color: $theme-color;
