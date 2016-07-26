@@ -2,20 +2,30 @@ import React from "react";
 import { Link } from "react-router";
 
 export default class Header extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      isActive: 'input-wrap search-wrap'
+    };
+  }
   handleFocus() {
-    console.log("Add Collapse");
+    if(this.state.isActive != 'collapse input-wrap search-wrap') {
+      this.setState({ isActive: 'collapse input-wrap search-wrap' });
+    }
   }
   handleFocusOut() {
-    console.log("Remove Collapse");
+    this.setState({ isActive: 'input-wrap search-wrap' });
   }
   handleChange() {
-    console.log("changing");
+
   }
   render() {
+    var collapse = this.state.isActive;
+
     return (
-      <div class="input-wrap search-wrap collapse" onBlur={this.handleFocusOut.bind()} onFocus={this.handleFocus.bind()}>
-        <input id="search" class="search-field" placeholder="Search Product..." type="text" onChange={this.handleChange.bind()}></input>
-        <label for="search" class="btn-icn mdi mdi-magnify"></label>
+      <div className={this.state.isActive} onBlur={() => this.handleFocusOut()} onFocus={() => this.handleFocus()} tabIndex="0">
+          <input type="search" id="search" class="search-field" placeholder="Search Product..." onChange={() => this.handleChange()}></input>
+          <label for="search" class="btn-icn mdi mdi-magnify"></label>
         <div class="rslt-view">
           <div class="rslt-elem">
             <img class="rslt-img"></img>

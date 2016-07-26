@@ -63,7 +63,6 @@ input{
 
 .search-field{
   @extend .border-box;
-  padding-left: 5px;
   height: $input-height;
   font-size: 13px;
   font-family: $default-font;
@@ -71,6 +70,10 @@ input{
   border: none;
   outline: none;
   display: inline-flex;
+
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
 
   & + .btn-icn{
     @extend .center-inline-elem;
@@ -87,6 +90,7 @@ input{
 .input-wrap{
   display: inline-flex;
   position: relative;
+  outline: none;
 }
 
 .rslt-elem{
