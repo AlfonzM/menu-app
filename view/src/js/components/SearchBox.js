@@ -1,8 +1,8 @@
 import React from "react";
-import { Link } from "react-router";
 import $ from "jquery";
 
-import Image from "./Image.js"
+import Image from "./Image.js";
+import SearchResult from "./SearchResult.js";
 
 var API_URL = 'http://localhost:8000/';
 
@@ -52,18 +52,31 @@ export default class Header extends React.Component {
     var products = this.state.searchResult;
 
     var searchResultComponents = products.map(function(products, i) {
-      return  <div key={i} class="rslt-elem">
-                <Image />
-                <div class="info-container">
-                  <span class="item-name">{products.name.en}</span>
-                  <span class="item-info">{products.category.name.en} /{products.subcategory.name.en} &nbsp;<span class="sale-tag"></span></span>
-                </div>
-              </div>;
+      const prod_name = (!products.name) ? 'None' : products.name;
+      const prod_category = (!products.category.name.en) ? 'None' : products.category.name.en;
+      const prod_subcategory = (!products.subcategory.name) ? 'None' : ' / '+products.subcategory.name;
+      const prod_discount = (!products.discount) ? '' : ' -'+products.discount+'%';
+      return  <SearchResult key={i}
+                            image=""
+                            id={products.id}
+                            name={products.name.en}
+                            category={prod_category}
+                            subcategory={prod_subcategory}
+                            discount={prod_discount}
+              />;
     });
 
-      return <div className={this.state.isActive} onBlur={() => this.handleFocusOut()} onFocus={() => this.handleFocus()} tabIndex="0">
-               <input type="search" id="search" class="search-field icon-contain" placeholder="Search Product..." value={this.state.value} onChange={this.handleChange.bind(this)}></input>
-               <label for="search" class="btn-icn mdi mdi-magnify"></label>
+      return <div onBlur={() => this.handleFocusOut()}
+                  onFocus={() => this.handleFocus()}
+                  className={this.state.isActive}
+                  tabIndex="0">
+               <input type="search" id="search"
+                      placeholder="Search Product..."
+                      value={this.state.value}
+                      onChange={this.handleChange.bind(this)}
+                      class="search-field icon-contain"></input>
+               <label for="search"
+                      class="btn-icn mdi mdi-magnify"></label>
                <div class="rslt-view">{searchResultComponents}</div>
              </div>;
   }

@@ -7,7 +7,7 @@ export default class Image extends React.Component {
     super(props);
     const imageFile = (!this.props.image) ? _defaultImage : this.props.image;
     this.state = {
-      image: imageFile,
+      image: imageFile
     };
   }
   handleError() {
@@ -15,7 +15,9 @@ export default class Image extends React.Component {
   }
   render() {
     return (
-      <img src={this.state.image} onError={() => this.handleError()} class="rslt-img"></img>
+      <img src={this.state.image}
+           onError={() => this.handleError()}
+           class="rslt-img"></img>
     );
   }
 }
