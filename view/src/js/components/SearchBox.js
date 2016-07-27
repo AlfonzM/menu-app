@@ -6,6 +6,7 @@ export default class Header extends React.Component {
     super(props);
     this.state = {
       isActive: 'input-wrap search-wrap',
+      value: '',
       searchResult: []
     };
   }
@@ -17,7 +18,8 @@ export default class Header extends React.Component {
   handleFocusOut() {
     this.setState({ isActive: 'input-wrap search-wrap' });
   }
-  handleChange() {
+  handleChange(event) {
+    this.setState({ value: event.target.value });
     this.setState({ searchResult: [] });
   }
   render() {
@@ -35,7 +37,7 @@ export default class Header extends React.Component {
     });
 
       return <div className={this.state.isActive} onBlur={() => this.handleFocusOut()} onFocus={() => this.handleFocus()} tabIndex="0">
-               <input type="search" id="search" class="search-field icon-contain" placeholder="Search Product..." onChange={() => this.handleChange()}></input>
+               <input type="search" id="search" class="search-field icon-contain" placeholder="Search Product..." value={this.state.value} onChange={this.handleChange.bind(this)}></input>
                <label for="search" class="btn-icn mdi mdi-magnify"></label>
                <div class="rslt-view">{searchResultComponents}</div>
              </div>;
