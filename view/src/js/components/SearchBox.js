@@ -6,7 +6,7 @@ export default class Header extends React.Component {
     super(props);
     this.state = {
       isActive: 'input-wrap search-wrap',
-      searchResult: ''
+      searchResult: []
     };
   }
   handleFocus() {
@@ -18,87 +18,11 @@ export default class Header extends React.Component {
     this.setState({ isActive: 'input-wrap search-wrap' });
   }
   handleChange() {
-
+    this.setState({ searchResult: [] });
   }
   render() {
     var collapse = this.state.isActive;
-    var products = [
-  {
-    "id": 1,
-    "category_id": 1,
-    "subcategory_id": 3,
-    "name": "Ice cream",
-    "description": "Vanilla",
-    "pepper_description": "Buy our Vanilla flavored ice cream its the best yey",
-    "featured": 0,
-    "ranking": 0,
-    "category": {
-      "id": 1,
-      "name": "Food"
-    },
-    "subcategory": {
-      "id": 3,
-      "category_id": 1,
-      "name": "Dessert"
-    },
-    "images": [
-      {
-        "id": 1,
-        "product_id": 1,
-        "filename": "icecream1.jpg"
-      },
-      {
-        "id": 2,
-        "product_id": 1,
-        "filename": "icecream2.jpg"
-      },
-      {
-        "id": 3,
-        "product_id": 1,
-        "filename": "icecream3.jpg"
-      }
-    ],
-    "videos": []
-  },
-  {
-    "id": 2,
-    "category_id": 1,
-    "subcategory_id": 1,
-    "name": "Bacon and egg",
-    "description": "Bacon and egg meal",
-    "pepper_description": "With free unlimited coffee yey",
-    "featured": 0,
-    "ranking": 0,
-    "category": {
-      "id": 1,
-      "name": "Food"
-    },
-    "subcategory": {
-      "id": 1,
-      "category_id": 1,
-      "name": "Breakfast"
-    },
-    "images": [
-      {
-        "id": 4,
-        "product_id": 2,
-        "filename": "baconandeggs1.jpg"
-      },
-      {
-        "id": 5,
-        "product_id": 2,
-        "filename": "baconandeggs2.jpg"
-      }
-    ],
-    "videos": [
-      {
-        "id": 1,
-        "product_id": 2,
-        "filename": "baconeggvideo.mp4"
-      }
-    ]
-  }
-];
+    var products = this.state.searchResult;
 
     var searchResultComponents = products.map(function(products, i) {
       return  <div key={i} class="rslt-elem">
