@@ -2,6 +2,8 @@ import React from "react";
 import { Link } from "react-router";
 import $ from "jquery";
 
+import Image from "./Image.js"
+
 var API_URL = 'http://localhost:8000/';
 
 export default class Header extends React.Component {
@@ -51,7 +53,7 @@ export default class Header extends React.Component {
 
     var searchResultComponents = products.map(function(products, i) {
       return  <div key={i} class="rslt-elem">
-                <img class="rslt-img"></img>
+                <Image />
                 <div class="info-container">
                   <span class="item-name">{products.name.en}</span>
                   <span class="item-info">{products.category.name.en} /{products.subcategory.name.en} &nbsp;<span class="sale-tag"></span></span>
