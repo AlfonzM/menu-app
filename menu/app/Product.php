@@ -14,7 +14,7 @@ class Product extends Model
     public $translatable = ['name', 'description', 'pepper_description'];
     public $casts = ['name' => 'array', 'description' => 'array', 'pepper_description' => 'array'];
 
-    protected $fillable = ['category_id', 'subcategory_id', 'name', 'description', 'pepper_description', 'featured', 'ranking'];
+    protected $fillable = ['category_id', 'subcategory_id', 'name', 'description', 'pepper_description', 'featured', 'ranking', 'discount'];
 
     protected $hidden = ['created_at', 'updated_at'];
 

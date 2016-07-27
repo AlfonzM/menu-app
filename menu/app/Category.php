@@ -7,12 +7,12 @@ use Themsaid\Multilingual\Translatable;
 
 class Category extends Model
 {
+    protected $table = 'categories_tb';
+    
 	// Translatable
 	use Translatable;
 	public $translatable = ['name'];
 	public $casts = ['name' => 'array'];
-
-    protected $table = 'categories_tb';
 
     protected $fillable = ['name'];
 

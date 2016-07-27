@@ -16,7 +16,9 @@ class CreateInitialTables extends Migration
             $table->increments('id');
             $table->string('logo');
             $table->string('name');
-            $table->string('greeting');
+            $table->text('greeting');
+            $table->string('default_language');
+            $table->string('languages');
             $table->boolean('wait_mode');
             $table->integer('wait_interval');
             $table->timestamps();
@@ -40,7 +42,7 @@ class CreateInitialTables extends Migration
             $table->increments('id');
             $table->integer('category_id')->unsigned();
             $table->foreign('category_id')->references('id')->on('categories_tb');
-            $table->string('name');
+            $table->text('name');
             $table->timestamps();
         });
 
@@ -54,6 +56,7 @@ class CreateInitialTables extends Migration
             $table->text('description');
             $table->text('pepper_description');
             $table->boolean('featured');
+            $table->integer('discount');
             $table->integer('ranking');
             $table->timestamps();
         }); 
