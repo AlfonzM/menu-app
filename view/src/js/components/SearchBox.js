@@ -1,5 +1,8 @@
 import React from "react";
 import { Link } from "react-router";
+import $ from "jquery";
+
+var API_URL = 'http://localhost:8000/';
 
 export default class Header extends React.Component {
   constructor(props) {
@@ -20,7 +23,22 @@ export default class Header extends React.Component {
   }
   handleChange(event) {
     this.setState({ value: event.target.value });
-    this.setState({ searchResult: [] });
+
+    var self = this;
+    var productname = this.state.value;
+
+    $.ajax({
+      url: API_URL + 'products?name=' + productname,
+      method: 'GET',
+      success: function(data){
+        self.setState({ searchResult: data });
+      },
+      error: function(x, e, s){
+        console.error(x);
+        console.error(e);
+        console.error(s);
+      }
+    });
   }
   render() {
     var collapse = this.state.isActive;
