@@ -22,22 +22,27 @@ export default class Header extends React.Component {
     this.setState({ isActive: 'input-wrap search-wrap' });
   }
   handleChange(event) {
-    this.setState({ value: event.target.value });
-
-    var self = this;
-    var productname = this.state.value;
-
-    $.ajax({
-      url: API_URL + 'products?name=' + productname,
-      method: 'GET',
-      success: function(data){
-        self.setState({ searchResult: data });
-      },
-      error: function(x, e, s){
-        console.error(x);
-        console.error(e);
-        console.error(s);
+    this.setState({ value: event.target.value }, () => {
+      if(this.state.value == ""){
+        this.setState({ searchResult: [] });
+        return;
       }
+
+      var self = this;
+      var productname = this.state.value;
+
+      $.ajax({
+        url: API_URL + 'products?name=' + productname,
+        method: 'GET',
+        success: function(data){
+          self.setState({ searchResult: data });
+        },
+        error: function(x, e, s){
+          console.error(x);
+          console.error(e);
+          console.error(s);
+        }
+      });
     });
   }
   render() {
@@ -48,8 +53,8 @@ export default class Header extends React.Component {
       return  <div key={i} class="rslt-elem">
                 <img class="rslt-img"></img>
                 <div class="info-container">
-                  <span class="item-name">{products.name}</span>
-                  <span class="item-info">{products.category.name} /{products.subcategory.name} &nbsp;<span class="sale-tag"></span></span>
+                  <span class="item-name">{products.name.en}</span>
+                  <span class="item-info">{products.category.name.en} /{products.subcategory.name.en} &nbsp;<span class="sale-tag"></span></span>
                 </div>
               </div>;
     });

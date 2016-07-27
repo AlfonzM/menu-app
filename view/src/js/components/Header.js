@@ -10,7 +10,7 @@ export default class Header extends React.Component {
   render() {
     return (
       <div class="header-bar">
-        <div class="header-container">
+        <header class="header-container">
           <div class="header-elem-wrapper">
             <i class="mdi mdi-cube"></i>
             <h1 class="title">catalogue</h1>
@@ -19,7 +19,7 @@ export default class Header extends React.Component {
             <SearchBox/>
           </div>
           <div class="header-elem-wrapper">1</div>
-        </div>
+        </header>
         <div class="nav-wrapper">
           <nav>
             <Link to="setup" class="nav-elem" activeClassName="active">
