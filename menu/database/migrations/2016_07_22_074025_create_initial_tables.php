@@ -50,7 +50,7 @@ class CreateInitialTables extends Migration
             $table->foreign('category_id')->references('id')->on('categories_tb');
             $table->integer('subcategory_id')->unsigned();
             $table->foreign('subcategory_id')->references('id')->on('subcategories_tb');
-            $table->string('name');
+            $table->text('name');
             $table->text('description');
             $table->text('pepper_description');
             $table->boolean('featured');

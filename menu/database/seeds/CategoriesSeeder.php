@@ -14,6 +14,6 @@ class CategoriesSeeder extends Seeder
     public function run()
     {
     	Category::create(['name'=>['en'=>'Food', 'jp' => 'Jap Food']]);
-    	Category::create(['name'=>['en'=>'Books', 'jp' => '']);
+    	Category::create(['name'=>['en'=>'Books', 'jp' => '']]);
     }
 }

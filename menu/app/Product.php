@@ -3,10 +3,16 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Themsaid\Multilingual\Translatable;
 
 class Product extends Model
 {
     protected $table = 'products_tb';
+
+    // Translatable
+    use Translatable;
+    public $translatable = ['name', 'description', 'pepper_description'];
+    public $casts = ['name' => 'array', 'description' => 'array', 'pepper_description' => 'array'];
 
     protected $fillable = ['category_id', 'subcategory_id', 'name', 'description', 'pepper_description', 'featured', 'ranking'];
 
