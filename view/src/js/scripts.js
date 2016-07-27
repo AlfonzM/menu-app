@@ -15,8 +15,10 @@ ReactDOM.render(
     <Route path="/" component={Layout}>
       <IndexRoute component={Setup}></IndexRoute>
       <Route path="setup" component={Setup}></Route>
-      <Route path="products" component={Products}></Route>
-      <Route path="products/:item" component={ProductDetail}></Route>
+      <Route path="products">
+        <IndexRoute component={Products}></IndexRoute>
+        <Route path=":item" component={ProductDetail}></Route>
+      </Route>
       <Route path="categories" component={Categories}></Route>
     </Route>
   </Router>,

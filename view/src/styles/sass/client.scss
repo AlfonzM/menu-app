@@ -68,6 +68,8 @@ input{
   font-family: $default-font;
   font-weight: 400;
   border: none;
+  border-top-left-radius: $global-border-radius;
+  border-bottom-left-radius: $global-border-radius;
   outline: none;
   display: inline-flex;
 
@@ -75,12 +77,14 @@ input{
      -moz-appearance: none;
           appearance: none;
 
-  & + .btn-icn{
+  &.icon-contain + .btn-icn{
     @extend .center-inline-elem;
     height: $input-height;
     min-width: $input-height;
     color: $theme-color;
     background-color: white;
+    border-top-right-radius: $global-border-radius;
+    border-bottom-right-radius: $global-border-radius;
     font-size: 18px;
     display: inline-flex;
     cursor: text;
