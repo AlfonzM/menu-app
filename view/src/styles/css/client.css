@@ -15,7 +15,7 @@ ul {
   -webkit-justify-content: center;
   justify-content: center; }
 
-.center-inline-elem, .search-field + .btn-icn {
+.center-inline-elem, .search-field.icon-contain + .btn-icn {
   -webkit-justify-content: flex-start;
   -webkit-align-items: flex-start;
   display: -webkit-inline-flex;
@@ -101,16 +101,20 @@ input:-ms-input-placeholder {
   font-family: "Lato";
   font-weight: 400;
   border: none;
+  border-top-left-radius: 2px;
+  border-bottom-left-radius: 2px;
   outline: none;
   display: inline-flex;
   -webkit-appearance: none;
   -moz-appearance: none;
   appearance: none; }
-  .search-field + .btn-icn {
+  .search-field.icon-contain + .btn-icn {
     height: 25px;
     min-width: 25px;
     color: #9F9F9F;
     background-color: white;
+    border-top-right-radius: 2px;
+    border-bottom-right-radius: 2px;
     font-size: 18px;
     display: inline-flex;
     cursor: text; }
