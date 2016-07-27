@@ -15,9 +15,9 @@ class ProductsSeeder extends Seeder
 	*/
 	public function run()
 	{
-		$cat = App\Category::where('id', 1)->first();
-		$dessert = App\Subcategory::where('name', 'Dessert')->first();
-		$breakfast = App\Subcategory::where('name', 'Breakfast')->first();
+		$cat = App\Category::where('name', 'like', '%Food%')->first();
+		$dessert = App\Subcategory::where('name', 'like', '%Dessert%')->first();
+		$breakfast = App\Subcategory::where('name', 'like', '%Breakfast%')->first();
 
 
 

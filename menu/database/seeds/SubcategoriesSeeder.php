@@ -14,7 +14,7 @@ class SubcategoriesSeeder extends Seeder
      */
     public function run()
     {
-    	$foodCategory = Category::where('id', 1)->first();
+    	$foodCategory = Category::where('name', 'like', '%Food%')->first();
     	$foodCategory->subcategories()->saveMany([
     		new Subcategory(['name' => 'Breakfast']),
     		new Subcategory(['name' => 'Lunch']),
