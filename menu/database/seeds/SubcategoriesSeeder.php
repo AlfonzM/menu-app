@@ -14,14 +14,14 @@ class SubcategoriesSeeder extends Seeder
      */
     public function run()
     {
-    	$foodCategory = Category::where('name', 'Food')->first();
+    	$foodCategory = Category::where('id', 1)->first();
     	$foodCategory->subcategories()->saveMany([
     		new Subcategory(['name' => 'Breakfast']),
     		new Subcategory(['name' => 'Lunch']),
     		new Subcategory(['name' => 'Dessert'])
 		]);
 
-    	$books = Category::where('name', 'Books')->first();
+    	$books = Category::where('id', 2)->first();
     	$books->subcategories()->saveMany([
     		new Subcategory(['name' => 'Fiction']),
     		new Subcategory(['name' => 'Non-Fiction']),

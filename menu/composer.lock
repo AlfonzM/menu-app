@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "c284a9c122da36c99a8b6597bdce7aa6",
-    "content-hash": "8b1485987e7c5949da82435d403e52e8",
+    "hash": "02ace53e71ba1b1190812e582c14b0d2",
+    "content-hash": "bb7a049903aa32b27bea133836f646ac",
     "packages": [
         {
             "name": "classpreloader/classpreloader",
@@ -1728,6 +1728,56 @@
                 "dump"
             ],
             "time": "2016-06-29 05:40:00"
+        },
+        {
+            "name": "themsaid/laravel-multilingual",
+            "version": "v1.0.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/themsaid/laravel-multilingual.git",
+                "reference": "5d1db39ef303d3ed89f56c7d74ef2e9193ca5bd1"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/themsaid/laravel-multilingual/zipball/5d1db39ef303d3ed89f56c7d74ef2e9193ca5bd1",
+                "reference": "5d1db39ef303d3ed89f56c7d74ef2e9193ca5bd1",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/support": "~5.1",
+                "php": ">=5.3.0"
+            },
+            "require-dev": {
+                "orchestra/testbench": "~3.0",
+                "phpunit/phpunit": "4.*"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Themsaid\\Multilingual\\": "src"
+                },
+                "classmap": [
+                    "tests"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Mohamed Said",
+                    "email": "theMohamedSaid@gmail.com"
+                }
+            ],
+            "description": "Easy multilingual laravel models",
+            "homepage": "https://github.com/themsaid/laravel-multilingual",
+            "keywords": [
+                "laravel",
+                "multilingual",
+                "translation"
+            ],
+            "time": "2016-07-09 11:11:45"
         },
         {
             "name": "vlucas/phpdotenv",

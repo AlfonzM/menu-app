@@ -32,7 +32,7 @@ class CreateInitialTables extends Migration
 
         Schema::create('categories_tb', function (Blueprint $table){
             $table->increments('id');
-            $table->string('name');
+            $table->text('name');
             $table->timestamps();
         });
 
