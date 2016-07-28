@@ -16,7 +16,7 @@ export default class SearchResult extends React.Component {
       <div key={this.props.index} class="rslt-elem">
         <Image image={this.props.image}/>
         <div class="info-container">
-          <span class="item-name">{this.props.name.substring(-1, startIndex)}
+          <span class="item-name">{this.props.name.substring(0, startIndex)}
                                   <mark>{this.props.name.substring(startIndex, endIndex)}</mark>
                                   {this.props.name.substring(endIndex, this.props.name.length)}
                                   </span>

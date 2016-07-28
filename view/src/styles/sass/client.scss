@@ -136,7 +136,7 @@ input{
     & > .item-name{
       width: 300px;
       line-height: 20px;
-      font-weight: 400;
+      font-weight: 800;
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
@@ -206,6 +206,6 @@ nav{
 }
 
 mark{
-  font-weight: 800;
+  font-weight: 300;
   background-color: transparent;
 }
