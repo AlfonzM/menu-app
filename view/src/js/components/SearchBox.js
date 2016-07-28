@@ -54,10 +54,11 @@ export default class Header extends React.Component {
     var searchResultComponents = products.map(function(products, i) {
       const prod_name = (!products.name) ? 'None' : products.name;
       const prod_category = (!products.category.name.en) ? 'None' : products.category.name.en;
-      const prod_subcategory = (!products.subcategory.name) ? 'None' : ' / '+products.subcategory.name;
+      const prod_subcategory = (!products.subcategory.name) ? 'None' : ' / '+products.subcategory.name.en;
       const prod_discount = (!products.discount) ? '' : ' -'+products.discount+'%';
+      const prod_image = (products.images.length <= 0) ? '' : products.images[0].filename;
       return  <SearchResult key={i}
-                            image=""
+                            image={prod_image}
                             id={products.id}
                             name={products.name.en}
                             category={prod_category}
