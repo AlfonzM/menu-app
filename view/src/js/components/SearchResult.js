@@ -4,8 +4,8 @@ import Image from "./Image.js"
 
 export default class SearchResult extends React.Component {
   render() {
-    let target = this.props.target;
-    let prod_name = this.props.name.toLowerCase();
+    const target = this.props.target;
+    const prod_name = this.props.name.toLowerCase();
     let startIndex = 0;
     let endIndex = 0;
     if(prod_name.indexOf(target.toLowerCase()) !== -1) {
