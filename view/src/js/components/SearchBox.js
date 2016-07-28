@@ -50,7 +50,7 @@ export default class Header extends React.Component {
   render() {
     var collapse = this.state.isActive;
     var products = this.state.searchResult;
-
+    var target = this.state.value;
     var searchResultComponents = products.map(function(products, i) {
       const prod_name = (!products.name) ? 'None' : products.name;
       const prod_category = (!products.category.name.en) ? 'None' : products.category.name.en;
@@ -60,6 +60,7 @@ export default class Header extends React.Component {
       return  <SearchResult key={i}
                             image={prod_image}
                             id={products.id}
+                            target={target}
                             name={products.name.en}
                             category={prod_category}
                             subcategory={prod_subcategory}

@@ -143,7 +143,6 @@ input:-ms-input-placeholder {
     height: 42px;
     width: 42px;
     flex-shrink: 0;
-    background-image: url("./images/no-image.png");
     background-size: contain; }
   .rslt-elem > .info-container {
     width: 100%;
