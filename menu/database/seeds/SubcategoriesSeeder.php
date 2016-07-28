@@ -16,16 +16,40 @@ class SubcategoriesSeeder extends Seeder
     {
     	$foodCategory = Category::where('name', 'like', '%Food%')->first();
     	$foodCategory->subcategories()->saveMany([
-    		new Subcategory(['name' => 'Breakfast']),
-    		new Subcategory(['name' => 'Lunch']),
-    		new Subcategory(['name' => 'Dessert'])
+            new Subcategory(['name' => [
+                   'en' => 'Breakfast',
+                   'jp' => '朝ごはん',
+                   'cn' => '早餐',
+                ]
+            ]),
+            new Subcategory(['name' => [
+                   'en' => 'Lunch',
+                   'jp' => 'ランチ',
+                   'cn' => '午餐',
+                ]
+            ]),
+    		new Subcategory(['name' => [
+                   'en' => 'Dessert',
+                   'jp' => 'ディナー',
+                   'cn' => '晚餐',
+                ]
+            ]),
 		]);
 
-    	$books = Category::where('id', 2)->first();
+    	$books = Category::where('name', 'like', '%Books%')->first();
     	$books->subcategories()->saveMany([
-    		new Subcategory(['name' => 'Fiction']),
-    		new Subcategory(['name' => 'Non-Fiction']),
-    		new Subcategory(['name' => 'Sci-fi'])
-		]);
+            new Subcategory(['name' => [
+                   'en' => 'Fiction',
+                   'jp' => 'フィクション',
+                   'cn' => '小说',
+                ]
+            ]),
+            new Subcategory(['name' => [
+                   'en' => 'Non-fiction',
+                   'jp' => 'ノンフィクション',
+                   'cn' => '非小说',
+                ]
+            ]),
+        ]);
     }
 }

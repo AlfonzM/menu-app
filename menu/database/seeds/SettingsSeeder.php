@@ -18,7 +18,13 @@ class SettingsSeeder extends Seeder
     	$setting = new Setting([
         	'logo' => 'awesome-logo.png',
         	'name' => 'Awesome',
-        	'greeting' => 'Hello, welcome to Awesome!',
+            'default_language' => 'en',
+            'languages' => 'en,jp,cn',
+        	'greeting' => [
+                'en' => 'Hello, welcome to Awesome!',
+                'jp' => 'こんにちは、恐ろしいへようこそ！',
+                'cn' => '您好，欢迎您真棒！',
+            ],
         	'wait_mode' => true,
         	'wait_interval' => 60
     	]);

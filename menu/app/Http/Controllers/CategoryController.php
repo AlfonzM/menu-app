@@ -45,7 +45,14 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $cat = Category::create(['name'=>[
+                'en' => $request->input('name-en') ?: '',
+                'jp' => $request->input('name-jp') ?: '',
+                'cn' => $request->input('name-cn') ?: '',
+            ]
+        ]);
+
+        return response()->json($cat);
     }
 
     /**
