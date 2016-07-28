@@ -155,7 +155,7 @@ input:-ms-input-placeholder {
     .rslt-elem > .info-container > .item-name {
       width: 300px;
       line-height: 20px;
-      font-weight: 600;
+      font-weight: 400;
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
@@ -206,10 +206,10 @@ nav {
     nav > .nav-elem.active {
       color: #9F9F9F;
       font-weight: 600;
-      border-bottom: solid 3px #d9d9d9; }
+      border-bottom: solid 3px #f3f3f3; }
 
 mark {
-  color: Tomato;
+  font-weight: 800;
   background-color: transparent; }
 
 /*# sourceMappingURL=client.css.map */

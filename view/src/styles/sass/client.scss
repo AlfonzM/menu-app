@@ -136,7 +136,7 @@ input{
     & > .item-name{
       width: 300px;
       line-height: 20px;
-      font-weight: 600;
+      font-weight: 400;
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
@@ -200,12 +200,12 @@ nav{
     &.active{
       color: $theme-color;
       font-weight: 600;
-      border-bottom: solid 3px $border-color;
+      border-bottom: solid 3px $light-border-color;
     }
   }
 }
 
 mark{
-  color: Tomato;
+  font-weight: 800;
   background-color: transparent;
 }
