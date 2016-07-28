@@ -208,4 +208,8 @@ nav {
       font-weight: 600;
       border-bottom: solid 3px #d9d9d9; }
 
+mark {
+  color: Tomato;
+  background-color: transparent; }
+
 /*# sourceMappingURL=client.css.map */
