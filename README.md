@@ -13,7 +13,7 @@ $ cp .env.dist .env
 
 // ... Edit database settings in .env file, e.g. DB host, user, pass etc
 
-$ php composer.phar 
+$ php composer.phar install
 
 // ... Create `menudb` table in your database
 
