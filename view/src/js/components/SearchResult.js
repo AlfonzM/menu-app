@@ -3,6 +3,9 @@ import React from "react";
 import Image from "./Image.js"
 
 export default class SearchResult extends React.Component {
+  handleClick() {
+    console.log("Edit "+this.props.name);
+  }
   render() {
     const target = this.props.target;
     const prod_name = this.props.name.toLowerCase();
@@ -13,7 +16,9 @@ export default class SearchResult extends React.Component {
       endIndex = startIndex+target.length;
     }
     return (
-      <div key={this.props.index} class="rslt-elem">
+      <div key={this.props.index}
+           onClick={() => this.handleClick()}
+           class="rslt-elem">
         <Image image={this.props.image}/>
         <div class="info-container">
           <span class="item-name">{this.props.name.substring(0, startIndex)}
