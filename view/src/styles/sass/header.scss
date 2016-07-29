@@ -42,10 +42,14 @@
   }
 
   & > button:not(.icon-button){
-    @extend .border-box;
-    padding: 6px;
+    height: 28px;
+    line-height: 26px;
+    vertical-align: middle;
+    padding-left: 10px;
+    padding-right: 10px;
     color: white;
     background-color: transparent;
+    vertical-align: middle;
     font-size: 13px;
     font-family: $default-font;
     letter-spacing: .5px;
@@ -53,6 +57,7 @@
     border-radius: $global-border-radius;
     cursor: pointer;
     outline: none;
+    position: relative;
 
     &:hover{
       background-color: darken($theme-color, 5%);
