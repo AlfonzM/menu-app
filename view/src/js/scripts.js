@@ -13,12 +13,12 @@ const app = document.getElementById('app');
 ReactDOM.render(
   <Router history={browserHistory}>
     <Route path="/" component={Layout}>
-      <IndexRoute component={Setup}/>
-      <Route path="/products">
-        <IndexRoute component={Products}/>
-        <Route path=":item" component={ProductDetail}/>
+      <Route path="setup" component={Setup}></Route>
+      <Route path="products" component={Products}>
+        <Route path="/products/:item" component={ProductDetail}></Route>
       </Route>
-      <Route path="/categories" component={Categories}></Route>
+      <Route path="categories" component={Categories}></Route>
+      <IndexRoute path="" component={Setup}></IndexRoute>
     </Route>
   </Router>,
 app);
