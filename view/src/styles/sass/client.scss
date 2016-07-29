@@ -52,8 +52,8 @@ input{
   }
 
   &.collapse{
-    & > .btn-icn{
-      color: $dark-theme-color;
+    & > .btn-icn:before{
+      color: gray;
     }
     & > .rslt-view{
       display: block;

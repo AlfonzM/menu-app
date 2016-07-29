@@ -40,6 +40,43 @@
     font-size: 18px;
     font-weight: 500;
   }
+
+  & > button:not(.icon-button){
+    @extend .border-box;
+    padding: 6px;
+    color: white;
+    background-color: transparent;
+    font-size: 13px;
+    font-family: $default-font;
+    letter-spacing: .5px;
+    border: none;
+    border-radius: $global-border-radius;
+    cursor: pointer;
+    outline: none;
+
+    &:hover{
+      background-color: $dark-theme-color;
+    }
+  }
+
+  & > .icon-button{
+    @extend .border-box;
+    padding: 0;
+    color: darken($theme-color, 20%);
+    background-color: transparent;
+    border: none;
+    border-radius: $global-border-radius;
+    cursor: pointer;
+    outline: none;
+
+    & > i:before{
+      font-size: 25px;
+    }
+
+    &.collapse{
+      color: white;
+    }
+  }
 }
 
 .header-search-wrap{
@@ -104,9 +141,12 @@ nav{
   }
 }
 
-@media screen and (max-width: 580px) {
+@media screen and (max-width: 700px) {
   body {
     & .title{
+      display: none;
+    }
+    & button:not(.icon-button){
       display: none;
     }
   }

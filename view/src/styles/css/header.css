@@ -25,7 +25,7 @@ ul {
   -webkit-justify-content: center;
   justify-content: center; }
 
-.border-box, .header-bar, .header-container, nav, nav > .nav-elem {
+.border-box, .header-bar, .header-container, .header-elem-wrapper > button:not(.icon-button), .header-elem-wrapper > .icon-button, nav, nav > .nav-elem {
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
   box-sizing: border-box; }
@@ -84,6 +84,31 @@ ul {
     color: white;
     font-size: 18px;
     font-weight: 500; }
+  .header-elem-wrapper > button:not(.icon-button) {
+    padding: 6px;
+    color: white;
+    background-color: transparent;
+    font-size: 13px;
+    font-family: "Lato";
+    letter-spacing: .5px;
+    border: none;
+    border-radius: 2px;
+    cursor: pointer;
+    outline: none; }
+    .header-elem-wrapper > button:not(.icon-button):hover {
+      background-color: #868686; }
+  .header-elem-wrapper > .icon-button {
+    padding: 0;
+    color: #6c6c6c;
+    background-color: transparent;
+    border: none;
+    border-radius: 2px;
+    cursor: pointer;
+    outline: none; }
+    .header-elem-wrapper > .icon-button > i:before {
+      font-size: 25px; }
+    .header-elem-wrapper > .icon-button.collapse {
+      color: white; }
 
 .header-search-wrap .input-wrap {
   margin-left: 10px;
@@ -128,8 +153,10 @@ nav {
 @media screen and (max-width: 1000px) {
   body .header-container {
     width: 100%; } }
-@media screen and (max-width: 580px) {
+@media screen and (max-width: 700px) {
   body .title {
+    display: none; }
+  body button:not(.icon-button) {
     display: none; } }
 
 /*# sourceMappingURL=header.css.map */

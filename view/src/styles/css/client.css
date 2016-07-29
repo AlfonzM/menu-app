@@ -90,8 +90,8 @@ input:-ms-input-placeholder {
   overflow-y: scroll; }
   .search-wrap > .rslt-view:not(:empty)::-webkit-scrollbar {
     display: none; }
-.search-wrap.collapse > .btn-icn {
-  color: #868686; }
+.search-wrap.collapse > .btn-icn:before {
+  color: gray; }
 .search-wrap.collapse > .rslt-view {
   display: block; }
 
