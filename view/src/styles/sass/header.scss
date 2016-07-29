@@ -55,7 +55,7 @@
     outline: none;
 
     &:hover{
-      background-color: $dark-theme-color;
+      background-color: darken($theme-color, 5%);
     }
   }
 

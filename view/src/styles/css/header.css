@@ -96,7 +96,7 @@ ul {
     cursor: pointer;
     outline: none; }
     .header-elem-wrapper > button:not(.icon-button):hover {
-      background-color: #868686; }
+      background-color: #929292; }
   .header-elem-wrapper > .icon-button {
     padding: 0;
     color: #6c6c6c;
