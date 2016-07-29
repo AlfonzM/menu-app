@@ -15,7 +15,12 @@ export default class Header extends React.Component {
           <div class="header-elem-wrapper header-search-wrap">
             <SearchBox />
           </div>
-          <div class="header-elem-wrapper">1</div>
+          <div class="header-elem-wrapper">
+            <button>Add Product</button>
+            <button class="icon-button">
+              <i class="mdi mdi-menu-down"></i>
+            </button>
+          </div>
         </header>
         <div class="nav-wrapper">
           <nav>
