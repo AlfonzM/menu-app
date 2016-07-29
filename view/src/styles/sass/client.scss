@@ -136,7 +136,7 @@ input{
     & > .item-name{
       width: 300px;
       line-height: 20px;
-      font-weight: 600;
+      font-weight: 800;
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
@@ -167,40 +167,8 @@ input{
   position: relative;
 }
 
-nav{
-  @extend .border-box;
-  width: $header-width;
-  height: 100%;
-  margin: 0 auto;
-  padding-left: 20px;
-  padding-right: 20px;
-  display: flex;
-  position: relative;
-
-  & > .nav-elem{
-    @extend .border-box;
-    min-width: 80px;
-    height: 100%;
-    padding-left: 10px;
-    padding-right: 10px;
-    color: $dark-border-color;
-    font-size: 15px;
-    font-weight: 400;
-    line-height: $nav-height;
-    vertical-align: middle;
-    text-align: center;
-    text-decoration: none;
-    position: relative;
-    cursor: pointer;
-
-    & > .nav-icon{
-      padding-right: 5px;
-    }
-
-    &.active{
-      color: $theme-color;
-      font-weight: 600;
-      border-bottom: solid 3px $border-color;
-    }
-  }
+mark{
+  font-weight: 300;
+  // color: transparentize(black, .2);
+  background-color: transparent;
 }
