@@ -63,7 +63,7 @@ class ProductController extends Controller
      */
     public function create()
     {
-        //
+        // 
     }
 
     /**
@@ -74,7 +74,30 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $product = Product::create([
+            'category_id' => $request->input('category-id'),
+            'subcategory_id' => $request->input('subcategory-id'),
+            'name' => [
+                'en' => $request->input('name-en'),
+                'jp' => $request->input('name-jp'),
+                'cn' => $request->input('name-cn'),
+            ],
+            'description' => [
+                'en' => $request->input('description-en'),
+                'jp' => $request->input('description-jp'),
+                'cn' => $request->input('description-cn'),
+            ],
+            'pepper_description' => [
+                'en' => $request->input('pepper-description-en'),
+                'jp' => $request->input('pepper-description-jp'),
+                'cn' => $request->input('pepper-description-cn'),
+            ],
+            'featured' => $request->input('featured'),
+            'discount' => $request->input('discount'),
+            'ranking' => $request->input('ranking')
+        ]);
+
+        return response()->json($product);
     }
 
     /**
@@ -108,7 +131,32 @@ class ProductController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $product = Product::find($id);
+
+        $product->category_id = $request->input('category-id');
+        $product->subcategory_id = $request->input('subcategory-id');
+        $product->name = [
+            'en' => $request->input('name-en'),
+            'jp' => $request->input('name-jp'),
+            'cn' => $request->input('name-cn')
+        ];
+        $product->description = [
+            'en' => $request->input('description-en'),
+            'jp' => $request->input('description-jp'),
+            'cn' => $request->input('description-cn')
+        ];
+        $product->pepper_description = [
+            'en' => $request->input('pepper-description-en'),
+            'jp' => $request->input('pepper-description-jp'),
+            'cn' => $request->input('pepper-description-cn')
+        ];
+        $product->featured = $request->input('featured');
+        $product->discount = $request->input('discount');
+        $product->ranking = $request->input('ranking');
+
+        $product->save();
+
+        return response()->json($product);
     }
 
     /**

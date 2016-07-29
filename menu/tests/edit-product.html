@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
+</head>
+<body>
+	<form id="myform">
+		<p>Name EN: <input type="text" name="name-en"></p>
+		<p>Name JP: <input type="text" name="name-jp"></p>
+		<p>Name CN: <input type="text" name="name-cn"></p>
+		<input id="submit" type="button" value="Submit">
+		<!-- <input type="hidden" name="_method" value="PUT"> -->
+	</form>
+	<script>
+		$(document).ready(function(e){
+			$.ajax({
+				url: 'http://localhost:8000/categories/1',
+				method: 'GET',
+				success: function(data){
+					$('input[name="name-en"]').val(data.name.en);
+					$('input[name="name-jp"]').val(data.name.jp);
+					$('input[name="name-cn"]').val(data.name.cn);
+				},
+				error: function(){
+					console.error("ERROR");
+				}
+			});
+		});
+
+		$('#submit').click(function (e){
+			var data = {
+				'name-en' : $('input[name="name-en"]').val(),
+				'name-jp' : $('input[name="name-jp"]').val(),
+				'name-cn' : $('input[name="name-cn"]').val(),
+			};
+
+			$.ajax({
+				url: 'http://localhost:8000/categories/1',
+				method: 'PUT',
+				data: data,
+				success: function(data){
+					alert('Submitted');
+				},
+				error: function(){
+					console.error("ERROR");
+				}
+			});
+		});
+	</script>
+</body>
+</html>

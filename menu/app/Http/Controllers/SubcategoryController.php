@@ -49,7 +49,7 @@ class SubcategoryController extends Controller
      */
     public function show($id)
     {
-        //
+        // 
     }
 
     /**
@@ -72,7 +72,7 @@ class SubcategoryController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        // 
     }
 
     /**

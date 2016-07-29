@@ -30,6 +30,9 @@
         ]
     },
     "scripts": {
+        "reseed":[
+            "php artisan migrate:refresh && php artisan db:seed"
+        ],
         "post-root-package-install": [
             "php -r \"copy('.env.example', '.env');\""
         ],

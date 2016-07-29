@@ -46,9 +46,7 @@ class ProductsSeeder extends Seeder
 		$product->save();
 
 		$product->images()->saveMany([
-			new ProductImage(['filename' => 'icecream1.jpg']),
-			new ProductImage(['filename' => 'icecream2.jpg']),
-			new ProductImage(['filename' => 'icecream3.jpg'])
+			new ProductImage(['filename' => 'http://morellisicecream.com/wp-content/uploads/2014/05/MIC-3scoops-banner.png'])
 		]);
 
 
@@ -79,11 +77,10 @@ class ProductsSeeder extends Seeder
 		$product2->save();
 
 		$product2->images()->saveMany([
-			new ProductImage(['filename' => 'baconandeggs1.jpg']),
-			new ProductImage(['filename' => 'baconandeggs2.jpg']),
+			new ProductImage(['filename' => 'http://www.lowcarbdietworks.com/members/recipes/wp-content/uploads/2011/01/bacon-eggs.jpg']),
 		]);
 
-		$product2->videos()->save(new ProductVideo(['filename' => 'baconeggvideo.mp4']));
+		// $product2->videos()->save(new ProductVideo(['filename' => 'baconeggvideo.mp4']));
 
 
 
@@ -112,6 +109,9 @@ class ProductsSeeder extends Seeder
 
 		$product3->save();
 
+		$product3->images()->saveMany([
+			new ProductImage(['filename' => 'https://d1dd4ethwnlwo2.cloudfront.net/wp-content/uploads/2013/12/french-toast-recipe.jpg']),
+		]);
 
 
 
@@ -139,6 +139,10 @@ class ProductsSeeder extends Seeder
 
 		$product4->save();
 
+		$product4->images()->saveMany([
+			new ProductImage(['filename' => 'https://s-media-cache-ak0.pinimg.com/736x/04/cd/4a/04cd4ab69fbb35b0effd1fb432258857.jpg']),
+		]);
+
 
 
 		// PRODUCT 5
@@ -164,5 +168,9 @@ class ProductsSeeder extends Seeder
 		]);
 
 		$product5->save();
+
+		$product5->images()->saveMany([
+			new ProductImage(['filename' => 'https://www.bigelowtea.com/getattachment/09250cf9-7f79-4da1-9a78-6c0a6c17ab26/Chocolate-Mint-Brownies-a-la-Mode']),
+		]);
 	}
 }

@@ -14,7 +14,7 @@ class CreateInitialTables extends Migration
     {
         Schema::create('settings_tb', function (Blueprint $table){
             $table->increments('id');
-            $table->string('logo');
+            $table->string('logo')->nullable();
             $table->string('name');
             $table->text('greeting');
             $table->string('default_language');

@@ -2,24 +2,21 @@
 
 namespace App\Http\Controllers;
 
-use App;
-
+use App\Category;
+use App\Http\Requests;
+use App\Subcategory;
 use Illuminate\Http\Request;
 
-use App\Http\Requests;
-
-use App\Category;
-
-class CategoryController extends Controller
+class CategorySubcategoryController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index($categoryId)
     {
-        return response()->json(Category::all());
+        return response()->json(Category::find($categoryId)->subcategories);
     }
 
     /**
@@ -27,7 +24,7 @@ class CategoryController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create($categoryId)
     {
         //
     }
@@ -38,16 +35,18 @@ class CategoryController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, $categoryId)
     {
-        $cat = Category::create(['name'=>[
+        $subcat = Subcategory::create([
+            'name' => [
                 'en' => $request->input('name-en') ?: '',
                 'jp' => $request->input('name-jp') ?: '',
                 'cn' => $request->input('name-cn') ?: '',
-            ]
+            ],
+            'category_id' => $categoryId
         ]);
 
-        return response()->json($cat);
+        return response()->json($subcat);
     }
 
     /**
@@ -56,9 +55,19 @@ class CategoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($categoryId, $subcategoryId)
     {
-        return response()->json(Category::with('subcategories')->find($id));
+        $sub = Subcategory::find($subcategoryId);
+
+        if(!$subcat){
+            return response()->json(['error' => 'Subcategory not found.'], 400);
+        }
+
+        if($subcat->category_id != $categoryId){
+            return response()->json(['error' => 'Subcategory does not belong to category.'], 400);
+        }
+
+        return response()->json($sub);
     }
 
     /**
@@ -79,19 +88,27 @@ class CategoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, $categoryId, $subcategoryId)
     {
-        $cat = Category::find($id);
+        $subcat = Subcategory::find($subcategoryId);
 
-        $cat->name = [
+        if(!$subcat){
+            return response()->json(['error' => 'Subcategory not found.'], 400);
+        }
+
+        if($subcat->category_id != $categoryId){
+            return response()->json(['error' => 'Subcategory does not belong to category.'], 400);
+        }
+
+        $subcat->name = [
             'en' => $request->input('name-en') ?: '',
             'jp' => $request->input('name-jp') ?: '',
             'cn' => $request->input('name-cn') ?: '',
         ];
+        
+        $subcat->save();
 
-        $cat->save();
-
-        return response()->json($cat);
+        return response()->json($subcat);
     }
 
     /**

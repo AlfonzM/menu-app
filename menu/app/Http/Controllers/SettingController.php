@@ -45,7 +45,21 @@ class SettingController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $setting = Setting::create([
+            'name' => $request->input('name'),
+            'logo' => $request->input('logo'),
+            'greeting' => [
+                'en' => $request->input('greeting-en'),
+                'jp' => $request->input('greeting-jp'),
+                'cn' => $request->input('greeting-cn'),
+            ],
+            'default_language' => $request->input('default-language'),
+            'languages' => $request->input('languages'),
+            'wait_mode' => $request->input('wait-mode'),
+            'wait_interval' => $request->input('wait-interval'),
+        ]);
+
+        return response()->json($setting);
     }
 
     /**
@@ -67,7 +81,7 @@ class SettingController extends Controller
      */
     public function edit($id)
     {
-        //
+        // 
     }
 
     /**
@@ -79,7 +93,22 @@ class SettingController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $setting = Setting::with('images')->find($id);
+        $setting->name = $request->input('name');
+        $setting->logo = $request->input('logo');
+        $setting->greeting = [
+            'en' => $request->input('greeting-en'),
+            'jp' => $request->input('greeting-jp'),
+            'cn' => $request->input('greeting-cn'),
+        ];
+        $setting->default_language = $request->input('default-language');
+        $setting->languages = $request->input('languages');
+        $setting->wait_mode = $request->input('wait-mode');
+        $setting->wait_interval = $request->input('wait-interval');
+
+        $setting->save();
+
+        return response()->json($setting);
     }
 
     /**

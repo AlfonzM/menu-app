@@ -13,6 +13,7 @@
 
 // for testing only
 header("Access-Control-Allow-Origin: *");
+header("Access-Control-Allow-Methods: GET,POST,PUT,DELETE");
 
 Route::get('/', function () {
     return view('welcome');
@@ -20,10 +21,11 @@ Route::get('/', function () {
 
 // Categories
 Route::resource('categories', 'CategoryController');
-Route::resource('categories/{id}/subcategories', 'CategoryController@subcategories');
+// Route::resource('categories/{id}/subcategories', 'CategoryController@subcategories');
+Route::resource('categories.subcategories', 'CategorySubcategoryController');
 
 // Subcategories
-Route::resource('subcategories', 'SubcategoryController');
+// Route::resource('subcategories', 'SubcategoryController');
 
 // Settings
 Route::resource('settings', 'SettingController');
@@ -33,3 +35,7 @@ Route::resource('settings/{id}/images', 'SettingController@images');
 Route::resource('products', 'ProductController');
 Route::resource('products/{id}/images', 'ProductController@images');
 Route::resource('products/{id}/videos', 'ProductController@videos');
+
+Route::get('/token', function(){
+	return csrf_token();
+});
