@@ -10,13 +10,13 @@ export default class Header extends React.Component {
         <header class="header-container">
           <div class="header-elem-wrapper">
             <i class="mdi mdi-cube"></i>
-            <h1 class="title">catalogue</h1>
+            <h1 class="title">商品紹介</h1>
           </div>
           <div class="header-elem-wrapper header-search-wrap">
             <SearchBox />
           </div>
           <div class="header-elem-wrapper">
-            <button>Add Product</button>
+            <button>商品を追加する</button>
             <button class="icon-button">
               <i class="mdi mdi-menu-down"></i>
             </button>

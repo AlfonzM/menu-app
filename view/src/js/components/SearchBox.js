@@ -78,7 +78,7 @@ export default class Header extends React.Component {
                   className={"input-wrap search-wrap " + collapse}
                   tabIndex="0">
                <input type="search" id="search"
-                      placeholder="Search Product..."
+                      placeholder="検索製品"
                       value={this.state.value}
                       onChange={this.handleChange.bind(this)}
                       onKeyPress={this.handleSearch.bind(this)}
