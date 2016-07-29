@@ -10,18 +10,21 @@ export default class Header extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      isActive: 'input-wrap search-wrap',
+      isActive: false,
       value: '',
       searchResult: []
     };
   }
   handleFocus() {
-    if(this.state.isActive != 'collapse input-wrap search-wrap') {
-      this.setState({ isActive: 'collapse input-wrap search-wrap' });
-    }
+      this.setState({ isActive: true });
   }
   handleFocusOut() {
-    this.setState({ isActive: 'input-wrap search-wrap' });
+    this.setState({ isActive: false });
+  }
+  handleSearch(event) {
+    this.setState({
+      isActive: (event.charCode === 13) ? false : true
+    });
   }
   handleChange(event) {
     this.setState({ value: event.target.value }, () => {
@@ -30,15 +33,14 @@ export default class Header extends React.Component {
         return;
       }
 
-      var self = this;
-      var productname = this.state.value;
+      const productname = this.state.value;
 
       $.ajax({
         url: API_URL + 'products?name=' + productname,
         method: 'GET',
         success: function(data){
-          self.setState({ searchResult: data });
-        },
+          this.setState({ searchResult: data });
+        }.bind(this),
         error: function(x, e, s){
           console.error(x);
           console.error(e);
@@ -48,15 +50,17 @@ export default class Header extends React.Component {
     });
   }
   render() {
-    var collapse = this.state.isActive;
-    var products = this.state.searchResult;
-    var target = this.state.value;
-    var searchResultComponents = products.map(function(products, i) {
+    const collapse = (this.state.isActive) ? 'collapse' : '';
+    const products = this.state.searchResult;
+    const target = this.state.value;
+
+    const searchResultComponents = products.map(function(products, i) {
       const prod_name = (!products.name) ? 'None' : products.name;
       const prod_category = (!products.category.name.en) ? 'None' : products.category.name.en;
       const prod_subcategory = (!products.subcategory.name) ? 'None' : ' / '+products.subcategory.name.en;
       const prod_discount = (!products.discount) ? '' : ' -'+products.discount+'%';
       const prod_image = (products.images.length <= 0) ? '' : products.images[0].filename;
+
       return  <SearchResult key={i}
                             image={prod_image}
                             id={products.id}
@@ -70,12 +74,13 @@ export default class Header extends React.Component {
 
       return <div onBlur={() => this.handleFocusOut()}
                   onFocus={() => this.handleFocus()}
-                  className={this.state.isActive}
+                  className={"input-wrap search-wrap " + collapse}
                   tabIndex="0">
                <input type="search" id="search"
                       placeholder="Search Product..."
                       value={this.state.value}
                       onChange={this.handleChange.bind(this)}
+                      onKeyPress={this.handleSearch.bind(this)}
                       class="search-field icon-contain"></input>
                <label for="search"
                       class="btn-icn mdi mdi-magnify"></label>
