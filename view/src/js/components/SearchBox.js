@@ -39,6 +39,7 @@ export default class Header extends React.Component {
         url: API_URL + 'products?name=' + productname,
         method: 'GET',
         success: function(data){
+          this.setState({ searchResult: [] });
           this.setState({ searchResult: data });
         }.bind(this),
         error: function(x, e, s){
