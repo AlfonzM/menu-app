@@ -36,27 +36,44 @@ export default class Header extends React.Component {
             <div class="tool-wrapper">
               <button className={"icon-button drop-down-button "+collapse}
                       onClick={() => this.handleCollapse()}
-                      onBlur={() => this.handleDeCollapse()}>
+                      onBlur={() => this.handleDeCollapse()}
+                      tabIndex="0">
                 <i class="mdi mdi-menu-down"></i>
+
+                <div class="drop-down-list">
+                  <div class="option"
+                       onClick={() => this.handleOptionClick()}>
+                    <span>Products</span>
+                    <span class="count">0</span>
+                  </div>
+                  <div class="option"
+                       onClick={() => this.handleOptionClick()}>
+                    <span>Categories</span>
+                    <span class="count">0</span>
+                  </div>
+                  <div class="option"
+                       onClick={() => this.handleOptionClick()}>
+                    <span>Sub Categories</span>
+                    <span class="count">0</span>
+                  </div>
+                  <div class="divider"></div>
+                  <div class="option"
+                       onClick={() => this.handleOptionClick()}>
+                    <span>Create Sale</span>
+                    <span class="count"></span>
+                  </div>
+                  <div class="option"
+                       onClick={() => this.handleOptionClick()}>
+                    <span>Active Sales</span>
+                    <span class="count">0</span>
+                  </div>
+                  <div class="divider"></div>
+                  <div class="option"
+                       onClick={() => this.handleOptionClick()}>
+                    <span>Log Out</span>
+                  </div>
+                </div>
               </button>
-              <div class="drop-down-list">
-                <div class="option">
-                  <span>Products</span>
-                  <span class="count">1</span>
-                </div>
-                <div class="option">
-                  <span>Categories</span>
-                  <span class="count">10</span>
-                </div>
-                <div class="option">
-                  <span>Sub Categories</span>
-                  <span class="count">24</span>
-                </div>
-                <div class="divider"></div>
-                <div class="option">
-                  <span>Log Out</span>
-                </div>
-              </div>
             </div>
           </div>
         </header>

@@ -173,7 +173,7 @@ nav{
   &.active{
     color: white;
 
-    & + .drop-down-list{
+    & > .drop-down-list{
       display: block;
     }
   }
@@ -182,9 +182,10 @@ nav{
 .drop-down-list{
   @extend .border-box;
   @include shadow-box(1px, 1px, transparentize($border-color, .3));
-  width: 180px;
+  width: 190px;
   padding-top: 5px;
   padding-bottom: 5px;
+  color: black;
   background-color: white;
   border-radius: $global-border-radius;
   display: none;
@@ -239,6 +240,7 @@ nav{
       padding-bottom: 5px;
       padding-left: 25px;
       padding-right: 25px;
+      text-align: left;
       display: inline-block;
     }
 
@@ -250,7 +252,7 @@ nav{
       padding-top: 2px;
       padding-bottom: 2px;
       margin-right: 25px;
-      color: white;
+      color: gray;
       background-color: Lightgray;
       font-size: 10px;
       border-radius: $global-border-radius;
@@ -262,6 +264,10 @@ nav{
 
     &:hover{
       background-color: $light-border-color;
+    }
+
+    &:active{
+      background-color: $border-color;
     }
   }
 }
