@@ -41,7 +41,13 @@
     font-weight: 500;
   }
 
-  & > button:not(.icon-button){
+  & > .tool-wrapper{
+    @extend .center-inline-elem;
+    height: 100%;
+    position: relative;
+  }
+
+  & button:not(.icon-button){
     height: 28px;
     line-height: 26px;
     vertical-align: middle;
@@ -64,7 +70,7 @@
     }
   }
 
-  & > .icon-button{
+  & .icon-button{
     @extend .border-box;
     padding: 0;
     color: darken($theme-color, 20%);
@@ -153,6 +159,109 @@ nav{
     }
     & button:not(.icon-button){
       display: none;
+    }
+  }
+}
+
+.drop-down-container{
+  height: 100%;
+  background-color: white;
+  position: relative;
+}
+
+.drop-down-button{
+  &.active{
+    color: white;
+
+    & + .drop-down-list{
+      display: block;
+    }
+  }
+}
+
+.drop-down-list{
+  @extend .border-box;
+  @include shadow-box(1px, 1px, transparentize($border-color, .3));
+  width: 180px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  background-color: white;
+  border-radius: $global-border-radius;
+  display: none;
+  position: absolute;
+  top: 100%;
+  right: -3px;
+
+  transform: translateY(1px);
+
+  &:before{
+    content: '';
+    width: 10px;
+    height: 10px;
+    background-color: white;
+    border-left: solid 1px transparentize($border-color, .3);
+    border-top: solid 1px transparentize($border-color, .3);
+    position: absolute;
+    top: -5px;
+    right: 10px;
+    pointer-events: none;
+    transform: rotate(45deg);
+  }
+
+  & > .divider{
+    height: 10px;
+    width: 100%;
+    position: relative;
+
+    &:before{
+      content: '';
+      width: 100%;
+      height: 1px;
+      border-top: solid 1px $light-border-color;
+      position: absolute;
+      top: calc(50% - (1px / 2));
+      left: 0;
+    }
+  }
+
+  & > .option{
+    @extend .center-block-elem;
+    width: 100;
+    min-height: 30px;
+    font-size: 12px;
+    position: relative;
+    cursor: pointer;
+    justify-content: space-between;
+
+    & > span{
+      @extend .border-box;
+      padding-top: 5px;
+      padding-bottom: 5px;
+      padding-left: 25px;
+      padding-right: 25px;
+      display: inline-block;
+    }
+
+    & .count{
+      @extend .border-box;
+      @extend .center-inline-elem;
+      padding-left: 5px;
+      padding-right: 5px;
+      padding-top: 2px;
+      padding-bottom: 2px;
+      margin-right: 25px;
+      color: white;
+      background-color: Lightgray;
+      font-size: 10px;
+      border-radius: $global-border-radius;
+
+      &:empty{
+        display: none;
+      }
+    }
+
+    &:hover{
+      background-color: $light-border-color;
     }
   }
 }
