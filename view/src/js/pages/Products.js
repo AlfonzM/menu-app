@@ -7,7 +7,6 @@ export default class Products extends React.Component {
     hashHistory.push(path);
   }
   render() {
-    console.log(hashHistory);
     return (
       <div>
         <h1>Product List</h1>

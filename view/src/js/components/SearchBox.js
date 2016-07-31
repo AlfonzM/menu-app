@@ -62,8 +62,6 @@ export default class Header extends React.Component {
     const products = this.state.searchResult;
     const target = this.state.value;
 
-    // let deCollapse = this.handleFocus();
-
     const searchResultComponents = products.map(function(products, i) {
       const prod_name = (!products.name.en) ? 'None' : products.name.en;
       const prod_category = (!products.category.name.en) ? 'None' : products.category.name.en;
@@ -91,6 +89,7 @@ export default class Header extends React.Component {
                       value={this.state.value}
                       onChange={this.handleChange.bind(this)}
                       onKeyPress={this.handleSearch.bind(this)}
+                      onFocus={(e) => {e.target.select(); }}
                       class="search-field icon-contain"></input>
                <label for="search"
                       class="btn-icn mdi mdi-magnify"></label>
