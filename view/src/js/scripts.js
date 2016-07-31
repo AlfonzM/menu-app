@@ -1,6 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import { Router, Route, IndexRoute, browserHistory } from "react-router";
+import { Router, Route, IndexRoute, hashHistory, useRouterHistory } from "react-router";
 
 import Setup from "./pages/Setup";
 import Products from "./pages/Products";
@@ -11,13 +11,13 @@ import Categories from "./pages/Categories";
 const app = document.getElementById('app');
 
 ReactDOM.render(
-  <Router history={browserHistory}>
+  <Router history={hashHistory}>
     <Route path="/" component={Layout}>
-      <Route path="setup" component={Setup}></Route>
-      <Route path="products" component={Products}>
+      <Route path="/setup" component={Setup}></Route>
+      <Route path="/products" component={Products}>
         <Route path="/products/:item" component={ProductDetail}></Route>
       </Route>
-      <Route path="categories" component={Categories}></Route>
+      <Route path="/categories" component={Categories}></Route>
       <IndexRoute path="" component={Setup}></IndexRoute>
     </Route>
   </Router>,

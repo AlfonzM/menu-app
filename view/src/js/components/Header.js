@@ -24,19 +24,19 @@ export default class Header extends React.Component {
         </header>
         <div class="nav-wrapper">
           <nav>
-            <Link to="setup"
+            <Link to="/setup"
                   class="nav-elem"
                   activeClassName="active">
               <i class="mdi mdi-tune nav-icon"></i>
               Setup
             </Link>
-            <Link to="products"
+            <Link to="/products"
                   class="nav-elem"
                   activeClassName="active">
               <i class="mdi mdi-shopping nav-icon"></i>
               Products
             </Link>
-            <Link to="categories"
+            <Link to="/categories"
                   class="nav-elem"
                   activeClassName="active">
               <i class="mdi mdi-file-tree nav-icon"></i>

@@ -1,10 +1,12 @@
 import React from "react";
+import { hashHistory } from 'react-router';
 
 import Image from "./Image.js"
 
 export default class SearchResult extends React.Component {
   handleClick() {
-    console.log("Edit "+this.props.name);
+    const path = '/products/'+this.props.name;
+    hashHistory.push(path);
   }
   render() {
     const target = this.props.target;

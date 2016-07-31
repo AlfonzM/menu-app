@@ -1,5 +1,6 @@
 import React from "react";
 import $ from "jquery";
+import { hashHistory } from 'react-router';
 
 import Image from "./Image.js";
 import SearchResult from "./SearchResult.js";
@@ -22,9 +23,15 @@ export default class Header extends React.Component {
     this.setState({ isActive: false });
   }
   handleSearch(event) {
-    this.setState({
-      isActive: (event.charCode === 13) ? false : true
-    });
+    if(event.charCode === 13) {
+      this.setState({ isActive: false });
+      if(this.state.value.trim()) {
+        const path = '/products/filter';
+        hashHistory.push(path);
+      }
+    }else {
+      this.setState({ isActive: true });
+    }
   }
   handleChange(event) {
     this.setState({ value: event.target.value }, () => {
@@ -55,8 +62,10 @@ export default class Header extends React.Component {
     const products = this.state.searchResult;
     const target = this.state.value;
 
+    // let deCollapse = this.handleFocus();
+
     const searchResultComponents = products.map(function(products, i) {
-      const prod_name = (!products.name) ? 'None' : products.name;
+      const prod_name = (!products.name.en) ? 'None' : products.name.en;
       const prod_category = (!products.category.name.en) ? 'None' : products.category.name.en;
       const prod_subcategory = (!products.subcategory.name) ? 'None' : ' / '+products.subcategory.name.en;
       const prod_discount = (!products.discount) ? '' : ' -'+products.discount+'%';
@@ -66,7 +75,7 @@ export default class Header extends React.Component {
                             image={prod_image}
                             id={products.id}
                             target={target}
-                            name={products.name.en}
+                            name={prod_name}
                             category={prod_category}
                             subcategory={prod_subcategory}
                             discount={prod_discount}
@@ -85,7 +94,10 @@ export default class Header extends React.Component {
                       class="search-field icon-contain"></input>
                <label for="search"
                       class="btn-icn mdi mdi-magnify"></label>
-               <div class="rslt-view">{searchResultComponents}</div>
+               <div class="rslt-view"
+                    onClick={() => this.handleFocusOut()}>
+                    {searchResultComponents}
+                  </div>
              </div>;
   }
 }
