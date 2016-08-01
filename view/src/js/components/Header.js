@@ -2,6 +2,7 @@ import React from "react";
 import { Link } from "react-router";
 
 import SearchBox from "./SearchBox";
+import DropOption from "./DropOption";
 
 export default class Header extends React.Component {
   constructor(props) {
@@ -11,7 +12,7 @@ export default class Header extends React.Component {
     };
   }
   handleCollapse() {
-    this.setState({ isActive: (this.state.isActive) ? false : true });
+    this.setState({ isActive: !this.state.isActive });
   }
   handleDeCollapse() {
     this.setState({ isActive: false });
@@ -38,40 +39,27 @@ export default class Header extends React.Component {
                       onClick={() => this.handleCollapse()}
                       onBlur={() => this.handleDeCollapse()}
                       tabIndex="0">
-                <i class="mdi mdi-menu-down"></i>
+                <i id="menu-drop-down" class="mdi mdi-menu-down"></i>
 
                 <div class="drop-down-list">
-                  <div class="option"
-                       onClick={() => this.handleOptionClick()}>
-                    <span>Products</span>
-                    <span class="count">0</span>
-                  </div>
-                  <div class="option"
-                       onClick={() => this.handleOptionClick()}>
-                    <span>Categories</span>
-                    <span class="count">0</span>
-                  </div>
-                  <div class="option"
-                       onClick={() => this.handleOptionClick()}>
-                    <span>Sub Categories</span>
-                    <span class="count">0</span>
-                  </div>
+                  <DropOption name="Products"
+                              count="0"
+                              onClick={this.handleOptionClick.bind(this)}/>
+                  <DropOption name="Categories"
+                              count="0"
+                              onClick={this.handleOptionClick.bind(this)}/>
+                  <DropOption name="Sub Categories"
+                              count="0"
+                              onClick={this.handleOptionClick.bind(this)}/>
                   <div class="divider"></div>
-                  <div class="option"
-                       onClick={() => this.handleOptionClick()}>
-                    <span>Create Sale</span>
-                    <span class="count"></span>
-                  </div>
-                  <div class="option"
-                       onClick={() => this.handleOptionClick()}>
-                    <span>Active Sales</span>
-                    <span class="count">0</span>
-                  </div>
+                  <DropOption name="Create Sale"
+                              onClick={this.handleOptionClick.bind(this)}/>
+                  <DropOption name="Active Sales"
+                              count="0"
+                              onClick={this.handleOptionClick.bind(this)}/>
                   <div class="divider"></div>
-                  <div class="option"
-                       onClick={() => this.handleOptionClick()}>
-                    <span>Log Out</span>
-                  </div>
+                  <DropOption name="Log Out"
+                              onClick={this.handleOptionClick.bind(this)}/>
                 </div>
               </button>
             </div>
