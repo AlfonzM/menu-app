@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\Helpers;
 use Illuminate\Database\Eloquent\Model;
 use Themsaid\Multilingual\Translatable;
 
@@ -32,5 +33,35 @@ class Product extends Model
 
     public function videos(){
     	return $this->hasMany('App\ProductVideo');
+    }
+
+    /*
+     * @param UploadedFile array
+     */
+    public function saveImages($images)
+    {
+        $productImages = [];
+
+        foreach($images as $image){
+            $filename = Helpers::save_image($image);
+            $productImages[] = new ProductImage(['filename' => $filename]);
+        }
+
+        $this->images()->saveMany($productImages);
+    }
+
+    /*
+     * @param UploadedFile array
+     */
+    public function saveVideos($videos)
+    {
+        $productVideos = [];
+
+        foreach($videos as $video){
+            $filename = Helpers::save_video($video);
+            $productVideos[] = new ProductVideo(['filename' => $filename]);
+        }
+
+        $this->videos()->saveMany($productVideos);
     }
 }

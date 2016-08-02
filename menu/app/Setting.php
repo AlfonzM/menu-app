@@ -2,6 +2,8 @@
 
 namespace App;
 
+use App\Helpers;
+use App\SettingImage;
 use Illuminate\Database\Eloquent\Model;
 use Themsaid\Multilingual\Translatable;
 
@@ -20,5 +22,20 @@ class Setting extends Model
 
     public function images(){
     	return $this->hasMany('App\SettingImage');
+    }
+
+    /*
+     * @param UploadedFile array
+     */
+    public function saveImages($images)
+    {
+        $settingImages = [];
+
+        foreach($images as $image){
+            $filename = Helpers::save_image($image);
+            $settingImages[] = new SettingImage(['filename' => $filename]);
+        }
+
+        $this->images()->saveMany($settingImages);
     }
 }

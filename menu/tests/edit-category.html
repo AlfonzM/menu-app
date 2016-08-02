@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
+	<script src="http://malsup.github.com/jquery.form.js"></script>
+</head>
+<body>
+	<h1>Edit Category</h1>
+	<form id="myform">
+		<input name="_method" type="hidden" value="PUT">
+		<p>Name EN: <input type="text" name="name-en"></p>
+		<p>Name JP: <input type="text" name="name-jp"></p>
+		<p>Name CN: <input type="text" name="name-cn"></p>
+		<input id="submit" type="button" value="Submit">
+		<!-- <input type="hidden" name="_method" value="PUT"> -->
+		<a href="#" onclick="deleteCategory()">Delete Category</a>
+	</form>
+	<script>
+		$(document).ready(function(e){
+			$.ajax({
+				url: 'http://localhost:8000/categories/1',
+				method: 'GET',
+				success: function(data){
+					$('input[name="name-en"]').val(data.name.en);
+					$('input[name="name-jp"]').val(data.name.jp);
+					$('input[name="name-cn"]').val(data.name.cn);
+				},
+				error: function(){
+					console.error("ERROR");
+				}
+			});
+		});
+
+		function deleteCategory(){
+			$.ajax({
+				url: 'http://localhost:8000/categories/1',
+				method: 'DELETE',
+				success: function(data){
+					console.log(data);
+					alert(data.message);
+				},
+				error: function(x,e,s){
+					console.log(x.responseText);
+				}
+			});
+		}
+
+		$('#submit').click(function (e){
+			var $form = $('form');
+
+			$form.ajaxSubmit({
+				url: 'http://localhost:8000/categories/1',
+				method: 'POST',
+				success: function(data){
+					console.log(data);
+					alert('Submitted');
+				},
+				error: function(){
+					console.error("ERROR");
+				}
+			});
+		});
+	</script>
+</body>
+</html>

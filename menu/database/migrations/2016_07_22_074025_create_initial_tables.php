@@ -27,7 +27,7 @@ class CreateInitialTables extends Migration
         Schema::create('setting_images_tb', function (Blueprint $table){
             $table->increments('id');
             $table->integer('setting_id')->unsigned();
-            $table->foreign('setting_id')->references('id')->on('settings_tb');
+            $table->foreign('setting_id')->references('id')->on('settings_tb')->onDelete('cascade');
             $table->string('filename');
             $table->timestamps();
         }); 
@@ -41,7 +41,7 @@ class CreateInitialTables extends Migration
         Schema::create('subcategories_tb', function (Blueprint $table){
             $table->increments('id');
             $table->integer('category_id')->unsigned();
-            $table->foreign('category_id')->references('id')->on('categories_tb');
+            $table->foreign('category_id')->references('id')->on('categories_tb')->onDelete('cascade');
             $table->text('name');
             $table->timestamps();
         });
@@ -49,9 +49,9 @@ class CreateInitialTables extends Migration
         Schema::create('products_tb', function (Blueprint $table){
             $table->increments('id');
             $table->integer('category_id')->unsigned();
-            $table->foreign('category_id')->references('id')->on('categories_tb');
+            $table->foreign('category_id')->references('id')->on('categories_tb')->onDelete('cascade');
             $table->integer('subcategory_id')->unsigned();
-            $table->foreign('subcategory_id')->references('id')->on('subcategories_tb');
+            $table->foreign('subcategory_id')->references('id')->on('subcategories_tb')->onDelete('cascade');
             $table->text('name');
             $table->text('description');
             $table->text('pepper_description');
@@ -64,7 +64,7 @@ class CreateInitialTables extends Migration
         Schema::create('product_images_tb', function (Blueprint $table){
             $table->increments('id');
             $table->integer('product_id')->unsigned();
-            $table->foreign('product_id')->references('id')->on('products_tb');
+            $table->foreign('product_id')->references('id')->on('products_tb')->onDelete('cascade');
             $table->string('filename');
             $table->timestamps();
         }); 
@@ -72,7 +72,7 @@ class CreateInitialTables extends Migration
         Schema::create('product_videos_tb', function (Blueprint $table){
             $table->increments('id');
             $table->integer('product_id')->unsigned();
-            $table->foreign('product_id')->references('id')->on('products_tb');
+            $table->foreign('product_id')->references('id')->on('products_tb')->onDelete('cascade');
             $table->string('filename');
             $table->timestamps();
         });

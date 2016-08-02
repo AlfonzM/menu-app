@@ -2,13 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-
-use App\Http\Requests;
-
 use App\Setting;
-
 use App\SettingImage;
+use App\Helpers;
+use Carbon\Carbon;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Input;
 
 class SettingController extends Controller
 {
@@ -44,20 +43,33 @@ class SettingController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {
+    {   
+        $logo = '';
+
+        // Save logo image
+        if($request->hasFile('logo')){
+            $file = $request->file('logo');
+            $logo = Helpers::save_image($file);
+        }
+
         $setting = Setting::create([
             'name' => $request->input('name'),
-            'logo' => $request->input('logo'),
+            'logo' => $logo,
             'greeting' => [
                 'en' => $request->input('greeting-en'),
                 'jp' => $request->input('greeting-jp'),
                 'cn' => $request->input('greeting-cn'),
             ],
             'default_language' => $request->input('default-language'),
-            'languages' => $request->input('languages'),
+            'languages' => implode(",", array_filter([$request->input('language-en'), $request->input('language-jp'),$request->input('language-cn')])),
             'wait_mode' => $request->input('wait-mode'),
             'wait_interval' => $request->input('wait-interval'),
         ]);
+
+        // Save slideshow images
+        if($request->hasFile('images')){
+            $setting->saveImages($request->file('images'));
+        }
 
         return response()->json($setting);
     }
@@ -94,19 +106,30 @@ class SettingController extends Controller
     public function update(Request $request, $id)
     {
         $setting = Setting::with('images')->find($id);
+
         $setting->name = $request->input('name');
-        $setting->logo = $request->input('logo');
         $setting->greeting = [
             'en' => $request->input('greeting-en'),
             'jp' => $request->input('greeting-jp'),
             'cn' => $request->input('greeting-cn'),
         ];
         $setting->default_language = $request->input('default-language');
-        $setting->languages = $request->input('languages');
         $setting->wait_mode = $request->input('wait-mode');
         $setting->wait_interval = $request->input('wait-interval');
+        $setting->languages = implode(",", array_filter([$request->input('language-en'), $request->input('language-jp'),$request->input('language-cn')])); // e.g. "en,jp"
+
+        // Save logo image
+        if($request->hasFile('logo')){
+            $file = $request->file('logo');
+            $setting->logo = Helpers::save_image($file);
+        }
 
         $setting->save();
+
+        // Save slideshow images
+        if($request->hasFile('images')){
+            $setting->saveImages($request->file('images'));
+        }
 
         return response()->json($setting);
     }

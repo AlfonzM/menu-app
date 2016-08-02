@@ -3,32 +3,51 @@
 <head>
 	<title></title>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
+	<script src="http://malsup.github.com/jquery.form.js"></script>
 </head>
 <body>
+	<h1>Create Product</h1>
+
 	<form id="myform">
-		<p>Name EN: <input type="text" name="name-en"></p>
-		<p>Name JP: <input type="text" name="name-jp"></p>
-		<p>Name CN: <input type="text" name="name-cn"></p>
+		<p>category-id <input type="number" name="category-id"></p>
+		<p>subcategory-id <input type="number" name="subcategory-id"></p>
+
+		<p>name-en <input type="text" name="name-en"></p>
+		<p>name-jp <input type="text" name="name-jp"></p>
+		<p>name-cn <input type="text" name="name-cn"></p>
+
+		<p>description-en <input type="text" name="description-en"></p>
+		<p>description-jp <input type="text" name="description-jp"></p>
+		<p>description-cn <input type="text" name="description-cn"></p>
+
+		<p>pepper-description-en <input type="text" name="pepper-description-en"></p>
+		<p>pepper-description-jp <input type="text" name="pepper-description-jp"></p>
+		<p>pepper-description-cn <input type="text" name="pepper-description-cn"></p>
+
+		<p>images <input type="file" name="images[]" multiple></p>
+		<p>videos <input type="file" name="videos[]" multiple></p>
+
+		<p>featured <input type="checkbox" name="featured"></p>
+		<p>discount <input type="number" name="discount"></p>
+		<p>ranking <input type="number" name="ranking"></p>
+
 		<input id="submit" type="button" value="Submit">
 	</form>
 	<script>
 		$('#submit').click(function (e){
 			e.preventDefault();
-			var data = {
-				'name-en' : $('input[name="name-en"]').val(),
-				'name-jp' : $('input[name="name-jp"]').val(),
-				'name-cn' : $('input[name="name-cn"]').val(),
-			};
 
-			$.ajax({
-				url: 'http://localhost:8000/categories',
+			var $form = $('#myform');
+
+			$form.ajaxSubmit({
+				url: 'http://localhost:8000/products/',
 				method: 'POST',
-				data: data,
 				success: function(data){
-					alert('Submitted');
+					console.log(data);
+					alert('Submitted...');
 				},
-				error: function(){
-
+				error: function(x,e,s){
+					console.log(x);
 				}
 			});
 		});

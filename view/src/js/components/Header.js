@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router";
 
+
 import SearchBox from "./SearchBox";
 import DropOption from "./DropOption";
 
@@ -8,11 +9,22 @@ export default class Header extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      isActive: false
+      isActive: true,
+      productCount: 0,
+      categoryCount: 0,
+      subcategoryCount: 0,
     };
   }
+  componentDidMount() {
+    this.setState({ isActive: false });
+  }
   handleCollapse() {
-    this.setState({ isActive: !this.state.isActive });
+    this.setState({ isActive: (this.state.isActive) ? false : true }, () => {
+      if(this.state.isActive){
+        // TODO
+        console.log('ajax');
+      }
+    });
   }
   handleDeCollapse() {
     this.setState({ isActive: false });
@@ -43,13 +55,13 @@ export default class Header extends React.Component {
 
                 <div class="drop-down-list">
                   <DropOption name="Products"
-                              count="0"
+                              count={this.state.productCount}
                               onClick={this.handleOptionClick.bind(this)}/>
                   <DropOption name="Categories"
-                              count="0"
+                              count={this.state.categoryCount}
                               onClick={this.handleOptionClick.bind(this)}/>
                   <DropOption name="Sub Categories"
-                              count="0"
+                              count={this.state.subcategoryCount}
                               onClick={this.handleOptionClick.bind(this)}/>
                   <div class="divider"></div>
                   <DropOption name="Create Sale"

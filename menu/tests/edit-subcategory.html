@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
+	<script src="http://malsup.github.com/jquery.form.js"></script>
+</head>
+<body>
+	<h1>Create Sub-Category</h1>
+
+	<form id="myform">
+		<input name="_method" type="hidden" value="PUT">
+		<p>Category ID: <input type="text" name="category-id" readonly></p>
+		<p>Subcategory ID: <input type="text" name="subcategory-id" readonly></p>
+		<p>Name EN: <input type="text" name="name-en"></p>
+		<p>Name JP: <input type="text" name="name-jp"></p>
+		<p>Name CN: <input type="text" name="name-cn"></p>
+		<input id="submit" type="button" value="Submit">
+	</form>
+	<script>
+		$(document).ready(function(e){
+			var categoryToEdit = 1;
+			var subcategoryToEdit = 1;
+
+			$.ajax({
+				url: 'http://localhost:8000/categories/' + categoryToEdit + '/subcategories/' + subcategoryToEdit,
+				method: 'GET',
+				success: function(data){
+					$('input[name="category-id"]').val(data.category_id);
+					$('input[name="subcategory-id"]').val(data.id);
+					$('input[name="name-en"]').val(data.name.en);
+					$('input[name="name-jp"]').val(data.name.jp);
+					$('input[name="name-cn"]').val(data.name.cn);
+				},
+				error: function(x,e,s){
+					console.error(x.responseText);
+				}
+			});
+		});
+
+		$('#submit').click(function (e){
+			e.preventDefault();
+			var categoryToEdit = $('input[name="category-id"]').val();
+			var subcategoryToEdit = $('input[name="subcategory-id"]').val();
+
+			$('form').ajaxSubmit({
+				url: 'http://localhost:8000/categories/' + categoryToEdit + '/subcategories/' + subcategoryToEdit,
+				method: 'POST',
+				success: function(data){
+					console.log(data);
+					alert('Submitted');
+				},
+				error: function(x,e,s){
+					console.log(x.responseText);
+				}
+			});
+		});
+	</script>
+</body>
+</html>

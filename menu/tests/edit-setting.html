@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
+	<script src="http://malsup.github.com/jquery.form.js"></script>
+</head>
+<body>
+	<h1>Edit Setting</h1>
+
+	<form id="myform">
+		<input name="_method" type="hidden" value="PUT">
+		<p>logo <input type="file" name="logo"></p>
+		<p>name <input type="text" name="name"></p>
+		<p>greeting-en <input type="text" name="greeting-en"></p>
+		<p>greeting-jp <input type="text" name="greeting-jp"></p>
+		<p>greeting-cn <input type="text" name="greeting-cn"></p>
+		<p>
+			default-language
+			<p>
+				<input type="radio" name="default-language" value="en" id="default-language-en" /><label for="default-language-en">English</label><br/>
+				<input type="radio" name="default-language" value="jp" id="default-language-jp" /><label for="default-language-jp">Japanese</label><br/>
+				<input type="radio" name="default-language" value="cn" id="default-language-cn" /><label for="default-language-cn">Chinese</label><br/>
+			</p>
+		</p>
+		<p>
+			languages:
+			<p>
+				<input type="checkbox" name="language-en" id="language-en" value="en" /><label for="language-en">English</label><br>
+				<input type="checkbox" name="language-jp" id="language-jp" value="jp" /><label for="language-jp">Japanese</label><br>
+				<input type="checkbox" name="language-cn" id="language-cn" value="cn" /><label for="language-cn">Chinese</label><br>
+			</p>
+		</p>
+		<p>wait-mode <input type="text" name="wait-mode"></p>
+		<p>wait-interval <input type="text" name="wait-interval"></p>
+		<p>slideshow images <input type="file" name="images[]" multiple></p>
+		<input id="submit" type="submit" value="Submit">
+	</form>
+	<script>
+		var settingId = 1;
+		$(document).ready(function(e){
+
+			$.ajax({
+				url: 'http://localhost:8000/settings/' + settingId,
+				method: 'GET',
+				success: function(data){
+					$('input[name="name"]').val(data.name);
+					$('input[name="greeting-en"]').val(data.greeting.en);
+					$('input[name="greeting-jp"]').val(data.greeting.jp);
+					$('input[name="greeting-cn"]').val(data.greeting.cn);
+					$('input[name="default-language"][value="'+ data.default_language +'"]').attr('checked', 1);
+					// $('input[name="languages"]').val(data.languages);
+					$('input[name="wait-mode"]').val(data.wait_mode);
+					$('input[name="wait-interval"]').val(data.wait_interval);
+				},
+				error: function(x,e,s){
+					console.error(x.responseText);
+				}
+			});
+		});
+
+		$('form#myform').submit(function (e){
+			e.preventDefault();
+
+			var $form = $(e.target);
+
+			$form.ajaxSubmit({
+				url: 'http://localhost:8000/settings/' + settingId,
+				method: 'POST',
+				success: function(data){
+					console.log(data);
+					alert('Submitted...');
+				},
+				error: function(x,e,s){
+					console.log(x);
+				}
+			});
+		});
+	</script>
+</body>
+</html>

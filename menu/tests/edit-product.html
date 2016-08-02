@@ -1,49 +1,88 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title></title>
+	<title>Edit Product</title>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
+	<script src="http://malsup.github.com/jquery.form.js"></script>
 </head>
 <body>
+	<h1>Edit Product</h1>
+
 	<form id="myform">
-		<p>Name EN: <input type="text" name="name-en"></p>
-		<p>Name JP: <input type="text" name="name-jp"></p>
-		<p>Name CN: <input type="text" name="name-cn"></p>
+		<input name="_method" type="hidden" value="PUT">
+		<p>category-id <input type="number" name="category-id"></p>
+		<p>subcategory-id <input type="number" name="subcategory-id"></p>
+
+		<p>name-en <input type="text" name="name-en"></p>
+		<p>name-jp <input type="text" name="name-jp"></p>
+		<p>name-cn <input type="text" name="name-cn"></p>
+
+		<p>description-en <input type="text" name="description-en"></p>
+		<p>description-jp <input type="text" name="description-jp"></p>
+		<p>description-cn <input type="text" name="description-cn"></p>
+
+		<p>pepper-description-en <input type="text" name="pepper-description-en"></p>
+		<p>pepper-description-jp <input type="text" name="pepper-description-jp"></p>
+		<p>pepper-description-cn <input type="text" name="pepper-description-cn"></p>
+
+		<p>images <input type="file" name="images[]" accept="image/*" multiple></p>
+		<p>videos <input type="file" name="videos[]" accept="video/*" multiple></p>
+
+		<p>featured <input type="checkbox" name="featured"></p>
+		<p>discount <input type="number" name="discount"></p>
+		<p>ranking <input type="number" name="ranking"></p>
+
 		<input id="submit" type="button" value="Submit">
-		<!-- <input type="hidden" name="_method" value="PUT"> -->
 	</form>
 	<script>
+		var productId = 1;
 		$(document).ready(function(e){
+
 			$.ajax({
-				url: 'http://localhost:8000/categories/1',
+				url: 'http://localhost:8000/products/' + productId,
 				method: 'GET',
 				success: function(data){
 					$('input[name="name-en"]').val(data.name.en);
 					$('input[name="name-jp"]').val(data.name.jp);
 					$('input[name="name-cn"]').val(data.name.cn);
+
+					$('input[name="description-en"]').val(data.description.en);
+					$('input[name="description-jp"]').val(data.description.jp);
+					$('input[name="description-cn"]').val(data.description.cn);
+
+					$('input[name="pepper-description-en"]').val(data.pepper_description.en);
+					$('input[name="pepper-description-jp"]').val(data.pepper_description.jp);
+					$('input[name="pepper-description-cn"]').val(data.pepper_description.cn);
+
+					if(data.featured){
+						$('input[name="featured"]').attr('checked', 1);
+					}
+
+					$('input[name="discount"]').val(data.discount);
+					$('input[name="ranking"]').val(data.ranking);
+					$('input[name="category-id"]').val(data.category_id);
+					$('input[name="subcategory-id"]').val(data.subcategory_id);
 				},
-				error: function(){
-					console.error("ERROR");
+				error: function(x,e,s){
+					console.error(x.responseText);
 				}
 			});
 		});
 
 		$('#submit').click(function (e){
-			var data = {
-				'name-en' : $('input[name="name-en"]').val(),
-				'name-jp' : $('input[name="name-jp"]').val(),
-				'name-cn' : $('input[name="name-cn"]').val(),
-			};
+			e.preventDefault();
 
-			$.ajax({
-				url: 'http://localhost:8000/categories/1',
-				method: 'PUT',
-				data: data,
+			var $form = $('#myform');
+
+			$form.ajaxSubmit({
+				url: 'http://localhost:8000/products/' + productId,
+				method: 'POST',
 				success: function(data){
-					alert('Submitted');
+					console.log(data);
+					alert('Submitted...');
 				},
-				error: function(){
-					console.error("ERROR");
+				error: function(x,e,s){
+					console.log(x);
 				}
 			});
 		});

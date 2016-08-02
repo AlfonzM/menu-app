@@ -150,11 +150,21 @@ class ProductController extends Controller
             'jp' => $request->input('pepper-description-jp'),
             'cn' => $request->input('pepper-description-cn')
         ];
-        $product->featured = $request->input('featured');
+        $product->featured = ($request->input('featured')) ? 1 : 0;
         $product->discount = $request->input('discount');
         $product->ranking = $request->input('ranking');
 
         $product->save();
+
+        // Save slideshow images
+        if($request->hasFile('images')){
+            $product->saveImages($request->file('images'));
+        }
+
+        // Save slideshow videos
+        if($request->hasFile('videos')){
+            $product->saveImages($request->file('videos'));
+        }
 
         return response()->json($product);
     }
@@ -167,6 +177,16 @@ class ProductController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $product = Product::find($id);
+
+        if(!$product){
+            return response()->json(['message' => 'Product not found.'], 404);
+        }
+
+        if($product->delete()){
+            return response()->json(['message' => 'Delete successful.']);
+        }
+
+        return response()->json(['message' => 'Delete unsuccessful.'], 400);
     }
 }

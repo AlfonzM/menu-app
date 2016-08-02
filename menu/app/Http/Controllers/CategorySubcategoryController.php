@@ -16,6 +16,10 @@ class CategorySubcategoryController extends Controller
      */
     public function index($categoryId)
     {
+        if(!Category::find($categoryId)){
+            return response()->json(['message' => 'Category not found.'], 404);
+        }
+
         return response()->json(Category::find($categoryId)->subcategories);
     }
 
@@ -37,6 +41,10 @@ class CategorySubcategoryController extends Controller
      */
     public function store(Request $request, $categoryId)
     {
+        if(!Category::find($categoryId)){
+            return response()->json(['message' => 'Category not found.'], 404);
+        }
+
         $subcat = Subcategory::create([
             'name' => [
                 'en' => $request->input('name-en') ?: '',
@@ -57,17 +65,21 @@ class CategorySubcategoryController extends Controller
      */
     public function show($categoryId, $subcategoryId)
     {
-        $sub = Subcategory::find($subcategoryId);
+        if(!Category::find($categoryId)){
+            return response()->json(['message' => 'Category not found.'], 404);
+        }
+
+        $subcat = Subcategory::find($subcategoryId);
 
         if(!$subcat){
-            return response()->json(['error' => 'Subcategory not found.'], 400);
+            return response()->json(['message' => 'Subcategory not found.'], 404);
         }
 
         if($subcat->category_id != $categoryId){
-            return response()->json(['error' => 'Subcategory does not belong to category.'], 400);
+            return response()->json(['message' => 'Subcategory does not belong to category.'], 404);
         }
 
-        return response()->json($sub);
+        return response()->json($subcat);
     }
 
     /**
@@ -92,12 +104,16 @@ class CategorySubcategoryController extends Controller
     {
         $subcat = Subcategory::find($subcategoryId);
 
+        if(!Category::find($categoryId)){
+            return response()->json(['message' => 'Category not found.'], 404);
+        }
+
         if(!$subcat){
-            return response()->json(['error' => 'Subcategory not found.'], 400);
+            return response()->json(['message' => 'Subcategory not found.'], 400);
         }
 
         if($subcat->category_id != $categoryId){
-            return response()->json(['error' => 'Subcategory does not belong to category.'], 400);
+            return response()->json(['message' => 'Subcategory does not belong to category.'], 400);
         }
 
         $subcat->name = [
@@ -117,8 +133,26 @@ class CategorySubcategoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($categoryId, $subcategoryId)
     {
-        //
+        $subcat = Subcategory::find($subcategoryId);
+
+        if(!Category::find($categoryId)){
+            return response()->json(['message' => 'Category not found.'], 404);
+        }
+
+        if(!$subcat){
+            return response()->json(['message' => 'Subcategory not found.'], 400);
+        }
+
+        if($subcat->category_id != $categoryId){
+            return response()->json(['message' => 'Subcategory does not belong to category.'], 400);
+        }
+
+        if($subcat->delete()){
+            return response()->json(['message' => 'Delete successful.']);
+        }
+
+        return response()->json(['message' => 'Delete unsuccessful.'], 400);
     }
 }
