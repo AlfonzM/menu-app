@@ -39,3 +39,24 @@ Route::resource('products/{id}/videos', 'ProductController@videos');
 Route::get('/token', function(){
 	return csrf_token();
 });
+
+Route::get('/test/{filename}', function($filename){
+    return url('/') . '/files/' . $filename;
+});
+
+Route::get('/files/{filename}', function($filename){
+	$path = storage_path() . '/app/files/' . $filename;
+
+	if(!File::exists($path)) {
+		return response()->json(['message' => 'Image not found.'], 404);
+	}
+
+    $file = File::get($path);
+    $type = File::mimeType($path);
+
+    $response = Response::make($file, 200);
+    $response->header("Content-Type", $type);
+
+    return $response;
+
+});

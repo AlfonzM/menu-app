@@ -92,10 +92,20 @@ class ProductController extends Controller
                 'jp' => $request->input('pepper-description-jp'),
                 'cn' => $request->input('pepper-description-cn'),
             ],
-            'featured' => $request->input('featured'),
+            'featured' => ($request->input('featured')) ? 1 : 0,
             'discount' => $request->input('discount'),
             'ranking' => $request->input('ranking')
         ]);
+        
+        // Save slideshow images
+        if($request->hasFile('images')){
+            $product->saveImages($request->file('images'));
+        }
+
+        // Save slideshow videos
+        if($request->hasFile('videos')){
+            $product->saveImages($request->file('videos'));
+        }
 
         return response()->json($product);
     }

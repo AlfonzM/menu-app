@@ -21,13 +21,14 @@
 			$.ajax({
 				url: 'http://localhost:8000/categories/1',
 				method: 'GET',
+				dataType: 'json',
 				success: function(data){
 					$('input[name="name-en"]').val(data.name.en);
 					$('input[name="name-jp"]').val(data.name.jp);
 					$('input[name="name-cn"]').val(data.name.cn);
 				},
-				error: function(){
-					console.error("ERROR");
+				error: function(x,e,s){
+					console.log(x.responseText);
 				}
 			});
 		});
@@ -36,6 +37,7 @@
 			$.ajax({
 				url: 'http://localhost:8000/categories/1',
 				method: 'DELETE',
+				dataType: 'json',
 				success: function(data){
 					console.log(data);
 					alert(data.message);
@@ -52,6 +54,7 @@
 			$form.ajaxSubmit({
 				url: 'http://localhost:8000/categories/1',
 				method: 'POST',
+				dataType: 'json',
 				success: function(data){
 					console.log(data);
 					alert('Submitted');

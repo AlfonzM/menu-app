@@ -2,6 +2,8 @@
 
 namespace App;
 
+use Illuminate\Support\Facades\Storage;
+
 class Helpers
 {
     /**
@@ -12,18 +14,18 @@ class Helpers
      */
 
 	static function save_image($file){
-		return Helpers::save_file($file, 'images');
+		return Helpers::save_file($file);
 	}
 
 	static function save_video($file){
-		return Helpers::save_file($file, 'videos');
+		return Helpers::save_file($file);
 	}
 
-	static function save_file($file, $directory){
+	static function save_file($file){
 		$origName = $file->getClientOriginalName();
 		$filename = str_slug(pathinfo($origName, PATHINFO_FILENAME)) . '-' . uniqid() . '.' . pathinfo($origName, PATHINFO_EXTENSION);
 
-		$file->move(public_path()."/$directory/", $filename);
+		$file->move(storage_path() . "/app/files/", $filename);
 
 		return $filename;
 	}
