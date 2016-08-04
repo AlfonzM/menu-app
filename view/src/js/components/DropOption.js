@@ -9,6 +9,9 @@ export default class DropOption extends React.Component {
       count: this.props.count
     };
   }
+  componentWillReceiveProps() {
+    this.setState({count: this.props.count});
+  }
   render() {
     return (
       <div class="option"

@@ -1,30 +1,42 @@
 import React from "react";
 import { Link } from "react-router";
-
+import $ from "jquery";
 
 import SearchBox from "./SearchBox";
 import DropOption from "./DropOption";
+
+let API_URL = 'http://localhost:8888/menu-app/menu/public/';
 
 export default class Header extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       isActive: true,
-      productCount: 0,
+      productCount: 1,
       categoryCount: 0,
       subcategoryCount: 0,
     };
   }
   componentDidMount() {
     this.setState({ isActive: false });
+    this.updateDropdownCounts();
   }
   handleCollapse() {
     this.setState({ isActive: (this.state.isActive) ? false : true }, () => {
       if(this.state.isActive){
-        // TODO
-        console.log('ajax');
+        this.updateDropdownCounts();
       }
     });
+  }
+  updateDropdownCounts() {
+    $.get(API_URL + 'counts', function(data) {
+      console.log(data);
+      this.setState({
+        productCount:data.productCount,
+        categoryCount:data.categoryCount,
+        subcategoryCount:data.subcategoryCount
+      });
+    }.bind(this));
   }
   handleDeCollapse() {
     this.setState({ isActive: false });

@@ -5,7 +5,7 @@ import { hashHistory } from 'react-router';
 import Image from "./Image.js";
 import SearchResult from "./SearchResult.js";
 
-var API_URL = 'http://localhost:8000/';
+let API_URL = 'http://localhost:8888/menu-app/menu/public/';
 
 export default class Header extends React.Component {
   constructor(props) {

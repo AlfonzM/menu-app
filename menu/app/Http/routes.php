@@ -40,10 +40,6 @@ Route::get('/token', function(){
 	return csrf_token();
 });
 
-Route::get('/test/{filename}', function($filename){
-    return url('/') . '/files/' . $filename;
-});
-
 Route::get('/files/{filename}', function($filename){
 	$path = storage_path() . '/app/files/' . $filename;
 
@@ -59,4 +55,12 @@ Route::get('/files/{filename}', function($filename){
 
     return $response;
 
+});
+
+Route::get('/counts', function(){
+    $productCount = App\Product::all()->count();
+    $categoryCount = App\Category::all()->count();
+    $subcategoryCount = App\Subcategory::all()->count();
+
+    return compact(['productCount', 'categoryCount', 'subcategoryCount']);
 });
