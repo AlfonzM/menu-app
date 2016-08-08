@@ -116,6 +116,7 @@ class SettingController extends Controller
         $setting->default_language = $request->input('default-language');
         $setting->wait_mode = $request->input('wait-mode');
         $setting->wait_interval = $request->input('wait-interval');
+        // $setting->languages = $request->input('languages'); // e.g. "en,jp"
         $setting->languages = implode(",", array_filter([$request->input('language-en'), $request->input('language-jp'),$request->input('language-cn')])); // e.g. "en,jp"
 
         // Save logo image

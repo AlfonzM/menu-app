@@ -2,10 +2,9 @@ import React from "react";
 import { Link } from "react-router";
 import $ from "jquery";
 
+import API from "../API.js";
 import SearchBox from "./SearchBox";
 import DropOption from "./DropOption";
-
-let API_URL = 'http://localhost:8888/menu-app/menu/public/';
 
 export default class Header extends React.Component {
   constructor(props) {
@@ -29,8 +28,7 @@ export default class Header extends React.Component {
     });
   }
   updateDropdownCounts() {
-    $.get(API_URL + 'counts', function(data) {
-      console.log(data);
+    API.getCounts(function(data){
       this.setState({
         productCount:data.productCount,
         categoryCount:data.categoryCount,

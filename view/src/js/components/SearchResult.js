@@ -5,7 +5,7 @@ import Image from "./Image.js"
 
 export default class SearchResult extends React.Component {
   handleClick() {
-    const path = '/products/'+this.props.name;
+    const path = '/products/'+this.props.id;
     hashHistory.push(path);
   }
   render() {

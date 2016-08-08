@@ -2,10 +2,9 @@ import React from "react";
 import $ from "jquery";
 import { hashHistory } from 'react-router';
 
+import API from "../API.js";
 import Image from "./Image.js";
 import SearchResult from "./SearchResult.js";
-
-let API_URL = 'http://localhost:8888/menu-app/menu/public/';
 
 export default class Header extends React.Component {
   constructor(props) {
@@ -40,21 +39,10 @@ export default class Header extends React.Component {
         return;
       }
 
-      const productname = this.state.value;
-
-      $.ajax({
-        url: API_URL + 'products?name=' + productname,
-        method: 'GET',
-        success: function(data){
-          this.setState({ searchResult: [] });
-          this.setState({ searchResult: data });
-        }.bind(this),
-        error: function(x, e, s){
-          console.error(x);
-          console.error(e);
-          console.error(s);
-        }
-      });
+      API.getProducts(this.state.value, function(data){
+        this.setState({ searchResult: [] });
+        this.setState({ searchResult: data });
+      }.bind(this));
     });
   }
   render() {
