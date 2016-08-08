@@ -1,6 +1,6 @@
 import React from "react";
 
-const _defaultImage = "../styles/css/images/no-image.png"
+const _defaultImage = "./styles/css/images/no-image.png"
 
 export default class Image extends React.Component {
   constructor(props) {
