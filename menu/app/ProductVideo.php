@@ -15,4 +15,12 @@ class ProductVideo extends Model
     public function product(){
     	return $this->belongsTo('App\Product');
     }
+
+    public function getFilenameAttribute($value){
+    	if(!filter_var($value, FILTER_VALIDATE_URL)){
+	    	return url('/files') . '/' . $value;
+    	} else {
+    		return $value;
+    	}
+    }
 }

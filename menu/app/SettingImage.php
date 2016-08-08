@@ -15,4 +15,12 @@ class SettingImage extends Model
     public function setting(){
     	return $this->belongsTo('App\Setting');
     }
+    
+    public function getFilenameAttribute($value){
+    	if(!filter_var($value, FILTER_VALIDATE_URL)){
+	    	return url('/files') . '/' . $value;
+    	} else {
+    		return $value;
+    	}
+    }
 }
