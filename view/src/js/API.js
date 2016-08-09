@@ -1,7 +1,7 @@
 import $ from "jquery";
 import jqueryform from "jquery-form";
 
-const API_URL = 'http://localhost:8888/menu-app/menu/public/';
+const API_URL = 'http://localhost:8888/menu-app/menu/public/api/v1/';
 
 module.exports = {
 

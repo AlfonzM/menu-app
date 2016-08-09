@@ -19,22 +19,34 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-// Categories
-Route::resource('categories', 'CategoryController');
-// Route::resource('categories/{id}/subcategories', 'CategoryController@subcategories');
-Route::resource('categories.subcategories', 'CategorySubcategoryController');
+Route::group(['prefix' => 'api'], function(){
+    Route::group(['prefix' => 'v1'], function() {
+        
+        // Categories
+        Route::resource('categories', 'CategoryController');
+        Route::resource('categories.subcategories', 'CategorySubcategoryController');
+        // Route::resource('categories/{id}/subcategories', 'CategoryController@subcategories');
 
-// Subcategories
-// Route::resource('subcategories', 'SubcategoryController');
+        // Settings
+        Route::resource('settings', 'SettingController');
+        Route::resource('settings/{id}/images', 'SettingController@images');
 
-// Settings
-Route::resource('settings', 'SettingController');
-Route::resource('settings/{id}/images', 'SettingController@images');
+        // Products
+        Route::resource('products', 'ProductController');
+        Route::resource('products/{id}/images', 'ProductController@images');
+        Route::resource('products/{id}/videos', 'ProductController@videos');
 
-// Products
-Route::resource('products', 'ProductController');
-Route::resource('products/{id}/images', 'ProductController@images');
-Route::resource('products/{id}/videos', 'ProductController@videos');
+        // Counts
+        Route::get('/counts', function(){
+            $productCount = App\Product::all()->count();
+            $categoryCount = App\Category::all()->count();
+            $subcategoryCount = App\Subcategory::all()->count();
+
+            return compact(['productCount', 'categoryCount', 'subcategoryCount']);
+        });
+    });
+});
+
 
 Route::get('/token', function(){
 	return csrf_token();
@@ -55,12 +67,4 @@ Route::get('/files/{filename}', function($filename){
 
     return $response;
 
-});
-
-Route::get('/counts', function(){
-    $productCount = App\Product::all()->count();
-    $categoryCount = App\Category::all()->count();
-    $subcategoryCount = App\Subcategory::all()->count();
-
-    return compact(['productCount', 'categoryCount', 'subcategoryCount']);
 });
