@@ -89,7 +89,7 @@ class ProductsSeeder extends Seeder
 
 		$product3 = new Product([
 			'category_id' => $cat->id,
-			'subcategory_id' => $breakfast->id,
+			// 'subcategory_id' => $breakfast->id,
 			'name' => [
 				'en' => 'French toast',
 				'jp' => 'フレンチトースト',
@@ -149,7 +149,7 @@ class ProductsSeeder extends Seeder
 
 		$product5 = new Product([
 			'category_id' => $cat->id,
-			'subcategory_id' => $dessert->id,
+			// 'subcategory_id' => $dessert->id,
 			'name' => [
 				'en' => 'Brownie a-la Mode',
 				'jp' => '・ラ・モードをブラウニー',

@@ -54,7 +54,23 @@ export default class Categories extends React.Component {
   renderCategoriesList(){
     return(
       this.state.categories.map(function(category, i){
-        return <div key={category.id}>{category.name.en} / {category.name.jp} / {category.name.cn}</div>
+        return (
+          <div key={category.id}>
+            <h2>{category.name.en} / {category.name.jp} / {category.name.cn}</h2>
+            <div>{this.renderSubcategoriesList(category)}</div>
+          </div>
+        )
+      }.bind(this))
+    )
+  }
+  renderSubcategoriesList(category){
+    return(
+      category.subcategories.map(function(subcategory, i){
+        return (
+          <p key={subcategory.id}>
+            {subcategory.name.en}
+          </p>
+        )
       })
     )
   }

@@ -19,7 +19,7 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        return response()->json(Category::all());
+        return response()->json(Category::with('subcategories')->get());
     }
 
     /**

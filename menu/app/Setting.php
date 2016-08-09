@@ -38,4 +38,12 @@ class Setting extends Model
 
         $this->images()->saveMany($settingImages);
     }
+
+    public function getLogoAttribute($value){
+        if(!filter_var($value, FILTER_VALIDATE_URL)){
+            return url('/files') . '/' . $value;
+        } else {
+            return $value;
+        }
+    }
 }

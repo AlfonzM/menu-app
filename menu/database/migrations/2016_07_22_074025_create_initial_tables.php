@@ -50,14 +50,14 @@ class CreateInitialTables extends Migration
             $table->increments('id');
             $table->integer('category_id')->unsigned();
             $table->foreign('category_id')->references('id')->on('categories_tb')->onDelete('cascade');
-            $table->integer('subcategory_id')->unsigned();
+            $table->integer('subcategory_id')->unsigned()->nullable();
             $table->foreign('subcategory_id')->references('id')->on('subcategories_tb')->onDelete('cascade');
             $table->text('name');
             $table->text('description');
             $table->text('pepper_description');
             $table->boolean('featured');
-            $table->integer('discount');
-            $table->integer('ranking');
+            $table->integer('discount')->nullable();
+            $table->integer('ranking')->nullable();
             $table->timestamps();
         }); 
 
