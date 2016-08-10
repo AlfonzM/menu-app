@@ -13,7 +13,8 @@ class CategoriesSeeder extends Seeder
      */
     public function run()
     {
-    	Category::create(['name'=>['en'=>'Food', 'jp' => 'フード', 'cn' => '餐饮']]);
-    	Category::create(['name'=>['en'=>'Books', 'jp' => '図書', 'cn' => '图书']]);
+        $settingId = App\Setting::first()->id;
+    	Category::create(['setting_id' => $settingId, 'name'=>['en'=>'Food', 'jp' => 'フード', 'cn' => '餐饮']]);
+    	Category::create(['setting_id' => $settingId, 'name'=>['en'=>'Books', 'jp' => '図書', 'cn' => '图书']]);
     }
 }

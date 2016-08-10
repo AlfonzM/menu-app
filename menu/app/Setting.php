@@ -24,6 +24,14 @@ class Setting extends Model
     	return $this->hasMany('App\SettingImage');
     }
 
+    public function categories(){
+        return $this->hasMany('App\Category');
+    }
+
+    public function products(){
+        return $this->hasMany('App\Product');
+    }
+
     /*
      * @param UploadedFile array
      */

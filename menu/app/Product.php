@@ -35,6 +35,10 @@ class Product extends Model
     	return $this->hasMany('App\ProductVideo');
     }
 
+    public function setting(){
+        return $this->belongsTo('App\Setting');
+    }
+
     /*
      * @param UploadedFile array
      */

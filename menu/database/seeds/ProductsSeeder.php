@@ -15,6 +15,7 @@ class ProductsSeeder extends Seeder
 	*/
 	public function run()
 	{
+        $settingId = App\Setting::first()->id;
 		$cat = App\Category::where('name', 'like', '%Food%')->first();
 		$dessert = App\Subcategory::where('name', 'like', '%Dessert%')->first();
 		$breakfast = App\Subcategory::where('name', 'like', '%Breakfast%')->first();
@@ -24,6 +25,7 @@ class ProductsSeeder extends Seeder
 		// PRODUCT 1
 
 		$product = new Product([
+			'setting_id' => $settingId,
 			'category_id' => $cat->id,
 			'subcategory_id' => $dessert->id,
 			'name' => [
@@ -55,8 +57,9 @@ class ProductsSeeder extends Seeder
 		// PRODUCT 2
 
 		$product2 = new Product([
-			'category_id' => $cat->id,
-			'subcategory_id' => $breakfast->id,
+			'setting_id' => $settingId,
+			// 'category_id' => $cat->id,
+			// 'subcategory_id' => $breakfast->id,
 			'name' => [
 				'en' => 'Bacon and egg',
 				'jp' => 'ベーコンと卵',
@@ -88,6 +91,7 @@ class ProductsSeeder extends Seeder
 		// PRODUCT 3
 
 		$product3 = new Product([
+			'setting_id' => $settingId,
 			'category_id' => $cat->id,
 			// 'subcategory_id' => $breakfast->id,
 			'name' => [
@@ -118,6 +122,7 @@ class ProductsSeeder extends Seeder
 		// PRODUCT 4
 
 		$product4 = new Product([
+			'setting_id' => $settingId,
 			'category_id' => $cat->id,
 			'subcategory_id' => $breakfast->id,
 			'name' => [
@@ -148,6 +153,7 @@ class ProductsSeeder extends Seeder
 		// PRODUCT 5
 
 		$product5 = new Product([
+			'setting_id' => $settingId,
 			'category_id' => $cat->id,
 			// 'subcategory_id' => $dessert->id,
 			'name' => [

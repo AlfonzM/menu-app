@@ -34,24 +34,36 @@ class CreateInitialTables extends Migration
 
         Schema::create('categories_tb', function (Blueprint $table){
             $table->increments('id');
+
+            $table->integer('setting_id')->unsigned();
+            $table->foreign('setting_id')->references('id')->on('settings_tb')->onDelete('cascade');
+
             $table->text('name');
             $table->timestamps();
         });
 
         Schema::create('subcategories_tb', function (Blueprint $table){
             $table->increments('id');
+
             $table->integer('category_id')->unsigned();
             $table->foreign('category_id')->references('id')->on('categories_tb')->onDelete('cascade');
+
             $table->text('name');
             $table->timestamps();
         });
 
         Schema::create('products_tb', function (Blueprint $table){
             $table->increments('id');
-            $table->integer('category_id')->unsigned();
+
+            $table->integer('setting_id')->unsigned();
+            $table->foreign('setting_id')->references('id')->on('settings_tb')->onDelete('cascade');
+
+            $table->integer('category_id')->unsigned()->nullable();
             $table->foreign('category_id')->references('id')->on('categories_tb')->onDelete('cascade');
+
             $table->integer('subcategory_id')->unsigned()->nullable();
             $table->foreign('subcategory_id')->references('id')->on('subcategories_tb')->onDelete('cascade');
+
             $table->text('name');
             $table->text('description');
             $table->text('pepper_description');
