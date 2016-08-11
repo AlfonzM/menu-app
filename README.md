@@ -11,11 +11,11 @@ $ git clone https://github.com/AlfonzM/menu-app.git
 $ cd menu
 $ cp .env.dist .env
 
-// ... Edit database settings in .env file, e.g. DB host, user, pass etc
+# ... Edit database settings in .env file, e.g. DB host, user, pass etc
 
 $ php composer.phar install
 
-// ... Create `menudb` table in your database
+#... Create `menudb` table in your database
 
 $ php artisan migrate:install && php artisan migrate && php db:seed
 $ php artisan serve
